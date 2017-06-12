@@ -1,0 +1,412 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>全国增值税发票校验</title>
+    
+    <link rel="stylesheet" href="~/Contents/StylesJs/weui.minNew.css?ver=1.0" />
+    <link rel="stylesheet" href="~/Contents/StylesJs/example.css?ver=1.0" />
+
+</head>
+<body ontouchstart>
+    <div class="page" style="opacity: 1;">
+        <div class="hd" style="padding:10px 10px 10px 0px">
+            <h4 class="page_title" style=" font-size:18px; margin:0px; width:100%"</h4>
+        </div>
+        <div class="bd">
+            <div class="weui_cells weui_cells_access search_show" id="search_show">
+
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd" style="text-align:center">
+                    <a href="javascript:;" id="scanQRCode0" class="weui-btn weui-btn_mini weui-btn_primary">扫一扫</a>
+                </div>
+            </div>
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">发票代码</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="fpdm" type="number" pattern="[0-9]*" placeholder="请输入发票代码">
+                    </div>
+                </div>
+                <div class="weui-cell weui-cell_vcode">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">发票号码</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="fphm" type="tel" placeholder="请输入发票号码">
+                    </div>
+                    
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">开票日期</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="kprq" type="date" value="">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" id="context" class="weui-label">开具金额(不含税)</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="fpje" type="number" value="" placeholder="请输入开具金额">
+                    </div>
+                </div>
+                <div class="weui-cell weui-cell_vcode">
+                    <div class="weui-cell__hd"><label  class="weui-label">验证码</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="yzm" type="text" placeholder="请输入验证码">
+                    </div>
+                    
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label"></label></div>
+                    <div class="weui-cell__bd">
+                        <img id="yzmtp" style="width: 8em;height: 3em;" class="weui-vcode-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAIAAAAYxYiPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEI1OEJBN0NCNjI2MTFFNkFFMUU5RTY4RTUwNEI4NDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEI1OEJBN0RCNjI2MTFFNkFFMUU5RTY4RTUwNEI4NDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QjU4QkE3QUI2MjYxMUU2QUUxRTlFNjhFNTA0Qjg0MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QjU4QkE3QkI2MjYxMUU2QUUxRTlFNjhFNTA0Qjg0MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Puy7evQAAAzbSURBVHja7Nt5sJfzFwdw39u1lO2iIiHXUmizlCVLIVvSZktmUiiUEpPU0BhLTSkhZBlCwyBa7ZRCKRItVEhXq7K1EaKf3+veY565v++tm29//Gb8fs93pmc+neecz+d8znmf5Xk+98n8/vvvX3/99ffff19YWLjDDjsYux544IE//PCDsUHlypWLioo2btxo7Iq41157GadSOUllFi5cWKFChby8vE2bNm233XYGrsZ5Jb9/lfwwIBq4GhtgSKVyksr78ccfMe2+++788/PPP++88868sW7dOvf4wdUYBX3Dhg14cOJPpXKVyqxateqnn37C4Tbz43M1RkHfZZddyCDiRnQ1RkFPpXKSyvMPzpHcy8/P/+OPP8hvv/32QXQ1RkF3Fw/in3/+mUrlKpWZNWvWHnvsUalSpdWrV0srBQUFrmvWrKlYsSK6gRhBJI9BgCCiGKdSOUnl8waf6D2SFM4bJspkMuEN4/Bh5Huc4cNUKiepvBo1ahD75ptvOIT55XUpZp999jGR1sTVGEWnEk7DiT+VylUqs3TpUq7ghOI8kskYuxqjRCbCF35DdEXkN+NUKiepvMWLFyPtu+++kWu036rkypUrMem0XY1R0N3FU61aNfypVK5SfyE6ySk8EFUyy4eRaLJ8mEr9fam8PffcE4fKKKNLMZLLb7/9tttuu5H3TOlqHP2gu3jWrl1LPpXKVSozb968kAF73MauxiETzz8GuI1djVGMU6mcpIpb7sjc8cwefXjStQiB6FrQo2uJfJ9K5SqVkbyjHYF/HBoXV2MUdAOPkgZyjbFZjHlJvk+lcpLKy+rDE28glu/DVCo3qazWJMy/atWqpDUxRkGPR8nNNjSp1Fal/uN9tJwSL1uTd6nK62effXbssccGkffKvoEtLSVS3n777eOPP36//fZLiFuVQhk5ciTlzjnnnJykst4Rb0lK6RfOhx9+eE5S27bWlqT+egRfsWJF8vjIuHvvvTcOj4+uDz744CmnnPLcc8+VfegsK1W1atX333+/cePGrijoW5J6+eWXzz///FGjRsVabHHttddasRwpd995551OnTolUqGhB9yyUvYGR7EWK3Ph66+/XlZq+fLlX3zxBUr5+ypnrXXr1plk/PjxjRo1uuOOO3bcccfNSm39hIVFunXr9tRTT5188sl/50wBNm+66aZXXnmldu3a5Z9EtGvXrlWr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">
+                    </div>
+                    <div class="weui-cell__ft">
+                        <label class="weui-label" id="yzminfo" style="text-align:left;font-size:12px;color:#000000">请输入验证码文字</label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd" style="text-align:center">
+                    <a href="javascript:;" id="checkfp" class="weui-btn weui-btn_mini weui-btn_primary">查验</a>
+                    <a href="javascript:;" id="reset" class="weui-btn weui-btn_mini weui-btn_primary">重置</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loadingToast" class="weui_loading_toast" style="">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <div class="weui_loading">
+                <!-- :) -->
+                <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+            </div>
+            <p class="weui_toast_content">数据加载中</p>
+        </div>
+    </div>
+    <script src="~/Contents/StylesJs/zepto.min.js"></script>
+    @*<script src="~/Contents/taxJs/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Contents/taxJs/validate.js"></script>
+    <script src="~/Contents/taxJs/aes.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '@ViewBag.appId',
+            timestamp: @ViewBag.timestamp,
+            nonceStr: '@ViewBag.nonceStr',
+            signature: '@ViewBag.signature',
+            jsApiList: ['scanQRCode']
+        });
+        wx.ready(function(){
+            document.querySelector('#scanQRCode0').onclick = function () {
+                //alert("in");
+                wx.scanQRCode({
+                    needResult: 1,
+                    scanType: ["qrCode","barCode"],
+                    success: function (res) {
+                        var result = res.resultStr;
+                        var qrdata = result.split(',');
+                        var para1 = qrdata[0];
+                        var fplx = qrdata[1];
+                        var fpdm = qrdata[2];
+                        var fphm = qrdata[3];
+                        var kjje = qrdata[4];
+                        var kprq = qrdata[5];
+                        kprq = kprq.substring(0, 4) + "-" + kprq.substring(4, 6) + "-" + kprq.substring(6, 8);
+                        var jym = qrdata[6];
+                        var para3 = qrdata[7];
+                        $("#fpdm").val(fpdm);
+                        $("#fphm").val(fphm);
+                        $("#kprq").val(kprq);
+                        if ((fplx == "01" || fplx == "02" || fplx == "03")) {
+                            if (fplx == "02") {
+                                $("#fpje").val(kjje);
+                            } else if (fplx == "03") {
+                                $("#fpje").val(kjje);
+                            } else {
+                                $("#fpje").val(kjje);
+                            }
+                        } else if (fplx == "04" || fplx == "10" || fplx == "11"||fplx == "51") {
+                            $("#fpje").val(jym.slice(-6));
+                        }
+                        initial();
+                        $("#yzm").focus();
+                    }
+                });
+            };
+        });
+        wx.error(function(res){
+            console.log(res);
+        });
+
+        $("#fpdm").on("blur",initial);
+        $("#reset").on("click",function() {
+            arw();
+        });
+        //验证码时间
+        var yzmSj = "";
+        //获取验证码时返回的jmmy
+        var jmmy = "";
+        //根据发票代码返回的查询路径
+        var ip = "";
+        //发票类型Code
+        var fplx = "";
+
+
+        $('#yzmtp').on("click",function () {
+            var fpdm = $("#fpdm").val().trim();
+            getYzm(fpdm);
+        });
+        function getYzm(fpdm) {
+            var swjginfo = getSwjg(fpdm, 0);
+            ip = swjginfo[1];
+            if(!ip){
+                return false;
+            }
+            var turl = ip.replace('https://','') + "/yzmQuery";
+            var urlc = '@ViewBag.fpCheckUrl';
+            var postData = {
+                "fpdm": fpdm,
+                "r": Math.random(),
+                "turl":turl,
+                "action":"getCheckYZM"
+            };
+            //alert(url);
+            $("#loadingToast").show();
+            $.ajax({
+                type: "POST",
+                url: urlc,
+                timeout: 20000, //超时时间设置，单位毫秒
+                //contentType: "xml",//这个一定要加上哟！
+                dataType: "jsonp",
+                data: postData,
+                jsonp: "callback",
+                jsonpCallback:"TaxCheckYZM",
+                success: function (data) {
+                    $("#loadingToast").hide();
+                    yzmSj = data.key2;
+                    jmmy = data.key3;
+                    if (data.key4 == '00') {
+                        $("#yzminfo").text("请输入验证码文字");
+                    } else if (data.key4 == '01') {
+                        $("#yzminfo").html("请输入验证码图片中<font color=\"red\" size=\"4\" style=\"background:#C0C0C0\">红色</font>文字");
+                    } else if (data.key4 == '02') {
+                        $("#yzminfo").html("请输入验证码图片中<font color=\"yellow\" size=\"4\" style=\"background:#C0C0C0\">黄色</font>文字");
+                    } else if (data.key4 == '03') {
+                        $("#yzminfo").html("请输入验证码图片中<font color=\"blue\" size=\"4\" style=\"background:#C0C0C0\">蓝色</font>文字");
+                    }
+                    $('#yzmtp').attr("src", "data:image/png;base64," + data.key1);
+                },
+                error: function (data) {
+                    $("#loadingToast").hide();
+                    alert("error");
+                }
+            });
+
+        }
+
+        //获取发票验证类型
+        function getFPYZLX(fplx){
+            if ((fplx == "01" || fplx == "02" || fplx == "03")){
+                if (fplx == "02"){
+                    $("#context").text("合计金额：");
+                    $("#fpje").attr("placeholder", "请输入合计金额");
+                }else if (fplx == "03") {
+                    $("#context").text("不含税价：");
+                    $("#fpje").attr("placeholder", "请输入不含税价");
+                }else {
+                    $("#context").text("开具金额(不含税)：");
+                    $("#fpje").attr("placeholder", "请输入开具金额");
+                }
+            } else if (fplx == "04" || fplx == "10" || fplx == "11") {
+                $("#context").text("校验码：");
+                $("#fpje").attr('maxlength', '6');
+                $("#fpje").attr("placeholder", "请输入校验码后六位");
+            }
+        }
+        function initial() {
+            var fpdm = $("#fpdm").val().trim();
+            //if(!!fpdm){
+            fplx = alxd(fpdm);
+            getFPYZLX(fplx);
+            getYzm(fpdm);
+            //}
+
+        }
+        $("#checkfp").on("click",function() {
+
+            var fpdm = $("#fpdm").val().trim();
+            var fphm = $("#fphm").val().trim();
+            var kprq = $("#kprq").val().trim();
+            if (kprq.indexOf("-") != "-1") {
+                kprq = kprq.replace(/-/g, "");
+            }
+            var fpje = $("#fpje").val().trim();
+            var yzm = $("#yzm").val().trim();
+            var iv = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+            var salt = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+            var url = ip + "/query";
+            var urlArr = url.replace("https://","").split(":");
+            var port = urlArr[1].split('/');
+            var tPort = port[0];
+            //url = "http://localhost:8101/main/tax";
+            url = '@ViewBag.fpCheckUrl';
+            var param = {
+                'fpdm': fpdm,
+                'fphm': fphm,
+                'kprq': kprq,
+                'fpje': fpje,
+                'fplx': fplx,
+                'yzm': yzm,
+                'yzmSj': yzmSj,
+                'index': jmmy,
+                'iv': iv,
+                'salt': salt
+            };
+            $("#loadingToast").show();
+            $.ajax({
+                type: "POST",
+                url: url,
+                timeout: 20000, //超时时间设置，单位毫秒
+                contentType: "application/json",
+                dataType: "jsonp",
+                //dataType: "json",
+                data:{
+                    "action":"checkfpWechat",
+                    "tData":JSON.stringify(param),
+                    "tUrl":urlArr[0],
+                    "tPort":tPort
+                },
+                jsonp: "callback",
+                jsonpCallback:"TaxCheck",
+                success: function (data) {
+                    $("#loadingToast").hide();
+                    var cyjgdm = data.key1;
+                    if (cyjgdm == "1") {
+                        alert("该省尚未开通发票查验功能！");
+                    } else if (cyjgdm == "001") {
+                        alert("发票信息查询一致!");
+                    } else if (cyjgdm == "002") {
+                        alert("超过该张发票当日查验次数(请于次日再次查验)!");
+                    } else if (cyjgdm == "003") {
+                        alert("发票查验请求太频繁，请稍后再试！");
+                    } else if (cyjgdm == "004") {
+                        alert("超过服务器最大请求数，请稍后访问!");
+                    } else if (cyjgdm == "005") {
+                        alert("请求不合法!");
+                    } else if (cyjgdm == "020") {
+                        alert("由于查验行为异常，涉嫌违规，当前无法使用查验服务！");
+                    } else if (cyjgdm == "006") {
+                        alert("发票信息查询不一致!");
+                    } else if (cyjgdm == "007") {
+                        alert("验证码失效!");
+                    } else if (cyjgdm == "008") {
+                        alert("验证码错误!");
+                    } else if (cyjgdm == "009") {
+                        alert("查无此票!");
+                    } else if (cyjgdm == "rqerr") {
+                        alert("当日开具发票可于次日进行查验！");
+                    } else if (cyjgdm == "009") {
+                        alert("查无此票!");
+                    } else if (cyjgdm == "010") {
+                        alert("网络超时，请重试！");
+                    } else if (cyjgdm == "010_") {
+                        alert("网络超时，请重试！(05)");
+                    } else {
+                        alert("网络超时，请重试！(04)");
+                    }
+                    clearYzm();
+                },
+                error: function (data) {
+                    $("#loadingToast").hide();
+                    alert("error");
+                }
+            });
+            //$.ajax({
+            //    type: "GET",
+            //    url: url,
+            //    timeout: 20000, //超时时间设置，单位毫秒
+            //    contentType: "application/json",
+            //    dataType: "jsonp",
+            //    //dataType: "json",
+            //    data: param,
+            //    jsonp: "callback",
+            //    success: function (data) {
+            //        $("#loadingToast").hide();
+            //        var cyjgdm = data.key1;
+            //        if (cyjgdm == "1") {
+            //            alert("该省尚未开通发票查验功能！");
+            //        } else if (cyjgdm == "001") {
+            //            alert("发票信息查询一致!");
+            //        } else if (cyjgdm == "002") {
+            //            alert("超过该张发票当日查验次数(请于次日再次查验)!");
+            //        } else if (cyjgdm == "003") {
+            //            alert("发票查验请求太频繁，请稍后再试！");
+            //        } else if (cyjgdm == "004") {
+            //            alert("超过服务器最大请求数，请稍后访问!");
+            //        } else if (cyjgdm == "005") {
+            //            alert("请求不合法!");
+            //        } else if (cyjgdm == "020") {
+            //            alert("由于查验行为异常，涉嫌违规，当前无法使用查验服务！");
+            //        } else if (cyjgdm == "006") {
+            //            alert("发票信息查询不一致!");
+            //        } else if (cyjgdm == "007") {
+            //            alert("验证码失效!");
+            //        } else if (cyjgdm == "008") {
+            //            alert("验证码错误!");
+            //        } else if (cyjgdm == "009") {
+            //            alert("查无此票!");
+            //        } else if (cyjgdm == "rqerr") {
+            //            alert("当日开具发票可于次日进行查验！");
+            //        } else if (cyjgdm == "009") {
+            //            alert("查无此票!");
+            //        } else if (cyjgdm == "010") {
+            //            alert("网络超时，请重试！");
+            //        } else if (cyjgdm == "010_") {
+            //            alert("网络超时，请重试！(05)");
+            //        } else {
+            //            alert("网络超时，请重试！(04)");
+            //        }
+            //        clearYzm();
+            //    },
+            //    error: function (data) {
+            //        $("#loadingToast").hide();
+            //        alert("error");
+            //    }
+            //});
+
+
+        });
+        function TaxCheckYZM(){
+
+        };
+        function TaxCheck(){
+
+        }
+    </script>
+
+</body>
+
+</html>
+

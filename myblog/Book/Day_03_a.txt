@@ -1,0 +1,83 @@
+1.mongolass usage
+	'use strict';
+ 
+	const Mongolass = require('mongolass');
+	const mongolass = new Mongolass();
+	mongolass.connect('mongodb://localhost:27017/test');
+	// const mongolass = new Mongolass('mongodb://localhost:27017/test');
+	 
+	const User = mongolass.model('User',{
+		name : {type : 'string' }, 
+		age : {type : 'number' },
+		password: { type: 'string' }
+	});
+	 
+	User
+	  .find()
+	  .select({ name: 1, age: 1 })
+	  .sort({ name: -1 })
+	  .exec()
+	  .then(console.log)
+	  .catch(console.error);
+
+2.response
+	a.	res.headersSent
+			-- Boolean property that indicates if the app sent HTTP headers for the response.
+			-- Usage:
+					**	app.get('/', function (req, res) {
+						  console.log(res.headersSent); // false
+						  res.send('OK');
+						  console.log(res.headersSent); // true
+						});
+	b.	res.locals  &&  app.locals
+			--	An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during that request / response cycle (if any). Otherwise, this property is identical to app.locals.
+			$$	包含响应局部变量的对象，该局部变量的范围为请求，因此仅对在请求/响应周期（如果有）期间呈现的视图可用。否则，此属性与app.locals相同。
+
+3.在routes/index.js中有关错误处理中间件
+	<<<<<<<<<<forward
+	app.use(function(err,req,res){...});
+	==========
+	app.use(function(err,req,res,next){...});
+	>>>>>>>>>>this is correct way.
+		Usage:
+			Error-handling middleware always takes four arguments. You must provide four arguments to identify it as an error-handling middleware function. Even if you don’t need to use the next object, you must specify it to maintain the signature. Otherwise, the next object will be interpreted as regular middleware and will fail to handle errors. 
+
+4.为何要加时间戳,加给谁?
+	-- plugins
+		Suppose that we have several collections in our database and want to add last-modified functionality to each one. With plugins this is easy. Just create a plugin once and apply it to each Schema:
+		假设我们在我们的数据库中有多个集合，并且希望为每个集合添加最后修改的功能。使用插件这很容易。只需创建一个插件并应用到每个模式：
+		Demo中使用了2个plugins:我们在 PostModel 上注册了 contentToHtml，而 addCreatedAt 是在 lib/mongo.js 中 mongolass 上注册的.前者是为了转换post文章从.md到.html,后者是为所有的schemas注册一个插件.
+	-- 加到哪里去了?
+		........................................
+
+5.populate
+	-- 填充shechma...可以显示的指定模型填充(本例所示),也可以在schema中引用ref
+		a.	Let's say you have a schema representing events, and a schema representing conversations. Each event has a corresponding conversation thread.
+		假设您有一个表示事件的模式，以及表示会话的模式。每个事件都有一个相应的会话线程。
+			var eventSchema = new Schema({
+			  name: String,
+			  // The id of the corresponding conversation
+			  // Notice there's no ref here!
+			  conversation: ObjectId
+			});
+			var conversationSchema = new Schema({
+			  numMessages: Number
+			});
+
+		b.	Also, suppose that events and conversations are stored in separate MongoDB instances.
+		此外，假设事件和对话存储在单独的MongoDB实例中。
+			var db1 = mongoose.createConnection('localhost:27000/db1');
+			var db2 = mongoose.createConnection('localhost:27001/db2');
+
+			var Event = db1.model('Event', eventSchema);
+			var Conversation = db2.model('Conversation', conversationSchema);
+
+		c.	In this situation, you will not be able to populate() normally. The conversation field will always be null, because populate() doesn't know which model to use. However, you can specify the model explicitly.
+		在这种情况下，您将无法正常填充（）。会话字段将始终为null，因为populate（）不知道使用哪个模型。但是，您可以显式指定模型。
+			Event.
+			  find().
+			  populate({ path: 'conversation', model: Conversation }).
+			  exec(function(error, docs) { /* ... */ });
+
+	  	This is known as a "cross-database populate," because it enables you to populate across MongoDB databases and even acrosss MongoDB instances.
+	  	这被称为“跨数据库填充”，因为它使您能够跨MongoDB数据库，甚至跨MongoDB实例填充。

@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-panel">
+      <view class="weui-panel__hd uf uf-he">
+        <text>Total:{{itemslength}}</text>
+        <text>发货列表</text>
+      </view>
+      <view class="weui-panel__bd">
+        <view wx:for="{{DeliveryLists}}" wx:key="PointCode" class="weui-media-box weui-media-box_text " id="{{item.ProcInstId}}" bindtap="showDetail">
+          <view class="weui-media-box__title weui-media-box__title_in-text">
+            <image src="/images/track.png" style="margin-right: 5px;vertical-align: middle;width:26px; height: 26px;"></image>
+            {{item.MountingPointsDesc}}</view>
+          <view class="uf uf-ac uf-hl" style="position:relative;overflow:hidden;">
+            <view class="classname">
+              <view class="weui-media-box__desc">产 品:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">K2单号:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">项 目:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">用 途:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">创建人:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">计划日期:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">状 态:</view>
+            </view>
+            <view class="classname">
+              <view class="weui-media-box__desc" style="padding-left:10rpx;">
+                <text class="">{{item.ProductCategoriesName?item.ProductCategoriesName:"无"}}
+                </text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.Form_Code?item.Form_Code:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.ProjectName?item.ProjectName:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.Purpose?item.Purpose:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.Emp_Name?item.Emp_Name:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.PlannedMdate?item.PlannedMdate:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx">
+                <text class="">{{item.Process_Status?item.Process_Status:"无"}}</text>
+              </view>
+            </view>
+            
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-accessNew" style="position:static"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

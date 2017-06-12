@@ -1,0 +1,126 @@
+﻿@{
+    Layout = null;
+}
+@model List<WechatApp.Models.OrderView>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>订单管理</title>
+
+    <link href="~/Contents/Styles/framework.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/style.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/owl.theme.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/swipebox.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/font-awesome.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/animate.css" rel="stylesheet" />
+
+    <script src="~/Contents/Scripts/jquery.js"></script>
+    <script src="~/Contents/Scripts/jqueryui.js"></script>
+    <script src="~/Contents/Scripts/framework.plugins.js"></script>
+    <script src="~/Contents/Scripts/custom.js"></script>
+    <style type="text/css">
+        img.responsive-image {
+            margin-bottom: 2px;
+        }
+
+        p.notification-page-item {
+            padding: 8px 20px 8px 10px;
+            margin-bottom: 10px;
+        }
+
+            p.notification-page-item i:first-child {
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                font-size: 11px;
+            }
+    </style>
+
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                页面加载中...
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div id="content" class="snap-content">
+            <div class="notification-page">
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var order in Model)
+                    {
+                        string _person = order.Person;
+                        string _begTime = order.BegTime.Substring(0, order.BegTime.Length - 3);
+                        string _car = order.Car;
+                        string _driver = order.Driver;
+                        <text>
+                            <div>
+                                <p class="notification-page-item material-box">
+                                    @if (ViewBag.Role == "normal")
+                                    {
+                                        <em>@_begTime | @_car | 司机:@_driver</em>
+                                    }
+                                    else if (ViewBag.Role == "driver")
+                                    { 
+                                        <em>@_person @_begTime</em>
+                                    }
+                                    else if (ViewBag.Role == "admin")
+                                    { 
+                                        <em>@_person @_begTime | @_car | 司机:@_driver</em>
+                                    }
+                                    <em>开始地点：@order.Origin | 结束地点：@order.Destination</em>
+                                    @if (ViewBag.Role == "admin")
+                                    {
+                                        if (order.JourneyStatus == "0")
+                                        {
+                                            <a href="/order/detail?guid=@order.Guid&ssoid = @ViewBag.UserId">修改</a>
+                                            <a href="/order/do?guid=@order.Guid&oprate=delete&ssoid=@ViewBag.UserId">删除</a>
+                                        }
+                                        <a href="#">@(order.JourneyStatus == "1" ? "行程进行中" : "行程未开始")</a>
+                                    }
+                                    else if (ViewBag.Role == "driver")
+                                    {
+                                        if (order.JourneyStatus == "0")
+                                        {
+                                            <a href="/order/do?guid=@order.Guid&oprate=start&ssoid=@ViewBag.UserId">开始行程</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/order/do?guid=@order.Guid&oprate=end&ssoid=@ViewBag.UserId">行程结束</a>
+                                        }
+                                        <a href="#">@(order.JourneyStatus == "1" ? "行程进行中" : "行程未开始")</a>
+                                    }
+                                    else if (ViewBag.Role == "normal")
+                                    {
+                                        if (order.JourneyStatus == "0")
+                                        {
+                                            <a href="/order/do?guid=@order.Guid&oprate=cancel&ssoid=@ViewBag.UserId">取消</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#">进行中</a>
+                                        }
+                                    }
+                                </p>
+                            </div>
+                        </text>
+                    }
+                }
+                else
+                {
+                    <h3 class="center-text">没有订单</h3>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

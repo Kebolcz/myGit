@@ -1,0 +1,61 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>车辆预定</title>
+
+    <link href="~/Contents/Styles/framework.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/style.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/owl.theme.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/swipebox.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/font-awesome.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/animate.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/user.define.css" rel="stylesheet" />
+
+    <script src="~/Contents/Scripts/jquery.js"></script>
+    <script src="~/Contents/Scripts/jqueryui.js"></script>
+    <script src="~/Contents/Scripts/framework.plugins.js"></script>
+    <script src="~/Contents/Scripts/custom.js"></script>
+    <style type="text/css">
+        img.responsive-image {
+            margin-bottom: 2px;
+        }
+
+        p.notification-page-item {
+            padding: 8px 20px 8px 10px;
+            margin-bottom: 10px;
+        }
+
+            p.notification-page-item i:first-child {
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                font-size: 11px;
+            }
+    </style>
+
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                页面加载中...
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div id="content" class="snap-content">
+            <div class="container material-box" style="padding:0 0">
+                <img src="~/Contents/images/car-booking.jpg" class="responsive-image" />
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

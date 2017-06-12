@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+@model List<WechatApp.Models.UserInfo>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>人员管理</title>
+
+    <link href="~/Contents/Styles/framework.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/style.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/owl.theme.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/swipebox.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/font-awesome.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/animate.css" rel="stylesheet" />
+
+    <script src="~/Contents/Scripts/jquery.js"></script>
+    <script src="~/Contents/Scripts/jqueryui.js"></script>
+    <script src="~/Contents/Scripts/framework.plugins.js"></script>
+    <script src="~/Contents/Scripts/custom.js"></script>
+    <style type="text/css">
+        img.responsive-image {
+            margin-bottom: 2px;
+        }
+
+        p.notification-page-item {
+            padding: 8px 20px 8px 10px;
+            margin-bottom: 10px;
+        }
+
+            p.notification-page-item i:first-child {
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                font-size: 11px;
+            }
+    </style>
+
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                页面加载中...
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div id="content" class="snap-content">
+            <div class="notification-page">
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var info in Model)
+                    {
+                        <text>
+                            <div>
+                                <p class="notification-page-item material-box">
+                                    <em>姓名:@info.UserName</em>
+                                    <em>性别:@info.UserSex</em>
+                                    <em>年龄:@info.UserAge</em>
+                                    <em>电话：@info.UserPhone </em>
+                                    <em>学历：@info.UserDegree </em>
+                                    <em>学校：@info.UserSchool </em>
+                                    <em>专业：@info.UserMajor </em>
+                                    <em>创建时间:@info.AddTime</em>
+                                    <em>
+                                        进度: @if (info.Status == "1")
+                                        {
+                                            <b>登记完成</b>
+                                        }
+                                        else if (info.Status == "2")
+                                        {
+                                            <b>性格测试完成</b>
+                                        }
+                                        else if (info.Status == "3")
+                                        {
+                                            <b>一面完成</b>
+                                        }
+                                        else if (info.Status == "4")
+                                        {
+                                            <b>结束</b>
+                                        }
+                                    </em>
+                                    <a href="/Recruitment/Interview?userId=@info.Id&ssoid=@ViewBag.UserNo">安排面试</a>
+                                    <a href="/Recruitment/detail?userId=@info.Id">测评结果</a>
+                                    <a href="/Recruitment/Evaluation?userId=@info.Id&ssoid=@ViewBag.UserNo">面试评价</a>
+                                </p>
+                            </div>
+                        </text>
+                    }
+                }
+                else
+                {
+                    <h3 class="center-text">没有人员</h3>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

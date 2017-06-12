@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WechatApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WechatApp_MossAnnouncement_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.100.99.101:8098/Service.asmx</Value>
+    </Setting>
+    <Setting Name="WechatApp_MWFWebService_MobileWFWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.100.99.68:9004/MWFWebService.asmx</Value>
+    </Setting>
+    <Setting Name="WechatApp_Tracking_logisticsTracking" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.100.99.241:6200/logisticsTracking.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,443 @@
+﻿@{
+    Layout = null;
+}
+@model List<WechatApp.Models.Question>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>面试评价表</title>
+
+    <link rel="stylesheet" href="../Contents/StylesJs/weui.min.css?ver=1.0" />
+    <link rel="stylesheet" href="../Contents/StylesJs/example.css?ver=1.0" />
+    <style type="text/css">
+        .last-column {
+            margin-right: 0% !important;
+        }
+
+        .no-bottom {
+            padding-bottom: 0px;
+            margin-bottom: 0px !important;
+        }
+
+        .last-column p {
+            color: #595959;
+        }
+
+        .last-column p {
+            line-height: 30px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            letter-spacing: 0px;
+        }
+
+        .one-quarter p {
+            line-height: 30px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            letter-spacing: 0px;
+        }
+
+        .radio-one-checked {
+            background-image: url("../Contents/images/ui/radio1c.png");
+            background-size: 16px 18px;
+            background-repeat: no-repeat;
+            padding-left: 18px;
+            background-position: 0px -1px;
+            margin-bottom: 10px;
+            margin-right: 12px;
+        }
+
+        .radio-one {
+            background-image: url("../Contents/images/ui/radio1.png");
+            background-size: 16px 18px;
+            background-repeat: no-repeat;
+            padding-left: 18px;
+            background-position: 0px -1px;
+            margin-bottom: 10px;
+            margin-right:12px;
+        }
+
+        .checkbox {
+            color: #666;
+        }
+
+        .last-column p > a {
+            display: inline;
+            text-decoration: none;
+        }
+
+        .material-box {
+            background-color: #FFF;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 30px 20px;
+            /*box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);*/
+            margin-bottom: 30px;
+            /*border-radius: 2px;*/
+        }
+    </style>
+
+</head>
+<body ontouchstart>
+    <div class="page">
+        <div class="hd" style="padding:10px 10px 10px 0px">
+            <h4 class="page_title" style=" font-size:18px; margin:0px; width:100%">@ViewBag.UserName  面试评价表</h4>
+            <input type="hidden" value="@ViewBag.UserId" id="user" />
+            <input type="hidden" value="@ViewBag.UserNo" id="userNo" />
+            <input type="hidden" value="@ViewBag.Type" id="userType" />
+        </div>
+        <div class="bd">
+            <div class="weui_cells_title">基本信息</div>
+            <div class="weui_cells">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>姓名</p>
+                    </div>
+                    <div class="weui_cell_ft">@ViewBag.UserName</div>
+                </div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>性别</p>
+                    </div>
+                    <div class="weui_cell_ft">@ViewBag.UserSex</div>
+                </div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>年龄</p>
+                    </div>
+                    <div class="weui_cell_ft">@ViewBag.UserAge</div>
+                </div>
+                <div class="weui_cell">
+                    @*<div class="weui_cell_hd">应聘职位</div>*@
+                    <div class="weui_cell_hd">应聘职位</div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" placeholder="请输入应聘职位" name="UserName" id="contactJobField" />
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="material-box">
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var order in Model)
+                    {
+                        if (order.Type == 3)
+                        {
+                            <text>
+                                @*<div class="weui_cells_title">@order.OrderNo  @order.Description</div>
+                                    <div class="weui_cells weui_cells_radio" data-kpi="@order.Type" data-seqnr="@order.Id">
+                                        <label class="weui_cell weui_check_label" for="@(order.Id.ToString()+1)">
+                                            <div class="weui_cell_bd weui_cell_primary">
+                                                <p>差</p>
+                                            </div>
+                                            <div class="weui_cell_ft">
+                                                <input type="radio" class="weui_check" name="@order.Id.ToString()" id="@(order.Id.ToString()+1)" value="1" data-value="1">
+                                                <span class="weui_icon_checked"></span>
+                                            </div>
+                                        </label>
+                                        <label class="weui_cell weui_check_label" for="@(order.Id.ToString()+2)">
+                                            <div class="weui_cell_bd weui_cell_primary">
+                                                <p>较差</p>
+                                            </div>
+                                            <div class="weui_cell_ft">
+                                                <input type="radio" name="@order.Id.ToString()" class="weui_check" id="@(order.Id.ToString()+2)" value="2" data-value="2">
+                                                <span class="weui_icon_checked"></span>
+                                            </div>
+
+                                        </label>
+                                        <label class="weui_cell weui_check_label" for="@(order.Id.ToString()+3)">
+                                            <div class="weui_cell_bd weui_cell_primary">
+                                                <p>一般</p>
+                                            </div>
+                                            <div class="weui_cell_ft">
+                                                <input type="radio" name="@order.Id.ToString()" class="weui_check" id="@(order.Id.ToString()+3)" value="3" data-value="3">
+                                                <span class="weui_icon_checked"></span>
+                                            </div>
+
+                                        </label>
+                                        <label class="weui_cell weui_check_label" for="@(order.Id.ToString()+4)">
+                                            <div class="weui_cell_bd weui_cell_primary">
+                                                <p>较好</p>
+                                            </div>
+                                            <div class="weui_cell_ft">
+                                                <input type="radio" name="@order.Id.ToString()" class="weui_check" id="@(order.Id.ToString()+4)" value="4" data-value="4">
+                                                <span class="weui_icon_checked"></span>
+                                            </div>
+
+                                        </label>
+                                        <label class="weui_cell weui_check_label" for="@(order.Id.ToString()+5)">
+                                            <div class="weui_cell_bd weui_cell_primary">
+                                                <p>好</p>
+                                            </div>
+                                            <div class="weui_cell_ft">
+                                                <input type="radio" name="@order.Id.ToString()" class="weui_check" id="@(order.Id.ToString()+5)" value="5" data-value="5">
+                                                <span class="weui_icon_checked"></span>
+                                            </div>
+                                        </label>
+                                    </div>*@
+
+                                <div>
+                                    <div class="one-quarter"><p class="no-bottom">@order.OrderNo  @order.Description </p></div>
+                                    <div class="last-column">
+                                        <p class="no-bottom choice" data-kpi="@order.Type" data-seqnr="@order.Id">
+                                            <a href="#" data-value="1" class="checkbox radio-one">差</a>
+                                            <a href="#" data-value="2" class="checkbox radio-one">较差</a>
+                                            <a href="#" data-value="3" class="checkbox radio-one">一般</a>
+                                            <a href="#" data-value="4" class="checkbox radio-one">较好</a>
+                                            <a href="#" data-value="5" class="checkbox radio-one">好</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </text>
+                        }
+                    }
+                }
+            </div>
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    评价
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" name="UserEvaluation" id="contactEvaluationField">
+                        <option value="0">----请选择----</option>
+                        <option value="建议录用">建议录用</option>
+                        <option value="有条件录用">有条件录用</option>
+                        <option value="建议不录用">建议不录用</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cells_title">面试评价</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <textarea class="weui_textarea" placeholder="请输入面试评价" rows="3" id="contactInterviewField" name="UserInterview"></textarea>
+                        <div class="weui_textarea_counter"><span>0</span>/200</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bd spacing">
+                <input type="button" class="weui_btn weui_btn_primary" id="review-submit" value="提交" name="review-submit" />
+            </div>
+            <!--BEGIN dialog2-->
+            <div class="weui_dialog_alert" id="dialog2" style="display: none;">
+                <div class="weui_mask"></div>
+                <div class="weui_dialog">
+                    <div class="weui_dialog_hd"><strong class="weui_dialog_title">提示</strong></div>
+                    <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
+                    <div class="weui_dialog_ft">
+                        <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+                    </div>
+                </div>
+            </div>
+            <!--END dialog2-->
+        </div>
+
+        <div class="weui_msg" id="msg2" style="display: none;">
+            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">操作成功</h2>
+                <p class="weui_msg_desc">OK</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="javascript:wx.closeWindow();" class="weui_btn weui_btn_primary" onclick="wx.closeWindow();">关闭</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Contents/StylesJs/zepto.min.js"></script>
+    <script src="../Contents/StylesJs/example.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '@ViewBag.appId',
+            timestamp: '@ViewBag.timestamp',
+            nonceStr: '@ViewBag.nonceStr',
+            signature: '@ViewBag.signature',
+            jsApiList: ['closeWindow']
+        });
+        function Score(UserID, QuestionID, Score, UserPosition, Evaluation, MSEvaluation, Assessment, Type) {
+            this.UserID = UserID;
+            this.QuestionID = QuestionID;
+            this.UserPosition = UserPosition;
+            this.Evaluation = Evaluation;
+            this.MSEvaluation = MSEvaluation;
+            this.Assessment = Assessment;
+            this.Type = Type;
+            this.Score = Score;
+        }
+
+        $('.radio-one').click(function () {
+            if (!$(this).hasClass('radio-one-checked')) {
+                $(this).removeClass('radio-one');
+                $(this).toggleClass('radio-one-checked');
+            }
+            return false;
+        });
+        $(".radio-one").click(function (event) {
+            $(event.target).siblings().removeClass("radio-one-checked");
+            $(event.target).siblings().addClass("radio-one");
+        })
+
+        function Validate() {
+            if (!$("#contactJobField").val()) {
+                $("#dialog2").find(".weui_dialog_bd").text("应聘职位不能为空").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            if (!$("#contactInterviewField").val()) {
+                $("#dialog2").find(".weui_dialog_bd").text("面试评价不能为空").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            if (!$("#contactEvaluationField").val() || $("#contactEvaluationField").val() == '0') {
+                $("#dialog2").find(".weui_dialog_bd").text("请选择评价结果").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            return true;
+        }
+
+        $("#review-submit").click(function () {
+            var isOk = true;
+            var scores = [];
+            if (Validate()) {
+                $(".choice").each(function (i) {
+                    //var radioChecked = $(this).find("input[type=radio]:checked");
+                    var radioChecked = $(this).find(".radio-one-checked");
+                    if (!radioChecked.length) {
+                        $("#dialog2").find(".weui_dialog_bd").text("第" + (i + 1) + "项没有评分").parent().parent().show();
+                        $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                            $('#dialog2').hide();
+                        });
+                        isOk = false;
+                        return false;
+                    } else {
+                        var radio = radioChecked.first();
+                        var score = new Score();
+                        score.UserID = $('#user').attr('value').toString().trim();
+                        score.QuestionID = $(this).attr("data-seqnr");
+                        score.Score = radio.attr("data-value");
+                        score.UserPosition = $('#contactJobField').val().trim();
+                        score.Evaluation = $('#contactEvaluationField').val().trim();
+                        score.MSEvaluation = $('#contactInterviewField').val().trim();
+                        score.Assessment = $('#userNo').attr('value').toString().trim();
+                        score.Type = $('#userType').attr('value').toString().trim();
+                        scores.push(score);
+                    }
+                });
+                if (isOk) {
+                    var user = $('#user').attr('value').toString().trim();
+                    var userNo = $('#userNo').attr('value').toString().trim();
+                    var userType = $('#userType').attr('value').toString().trim();
+                    if (!user || !userNo || !userType) {
+                        $("#dialog2").find(".weui_dialog_bd").text("参数错误").parent().parent().show();
+                        $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                            $('#dialog2').hide();
+                        });
+                        return;
+                    }
+                    var postData = {
+                        UserID: user,
+                        UserNO: userNo,
+                        Type: userType,
+                        scores: scores
+                    };
+
+                    $("#review-submit").attr("value", "提交中...").attr("disabled", "disabled");
+                    $.ajax({
+                        type: "POST",
+                        url: "/Recruitment/Evaluation",
+                        timeout: 900000, //超时时间设置，单位毫秒
+                        contentType: "application/json",//这个一定要加上哟！
+                        dataType: "json",
+                        data: JSON.stringify(postData),
+                        success: function (data) {
+                            $(".bd").hide();
+                            $(".hd").hide();
+                            $(".weui_msg").show();
+                            $('#msg2').find('.weui_btn_primary').on('click', function () {
+                            });
+                        },
+                        fail: function (data) {
+                            $("#review-submit").attr("value", "提交").attr("disabled", "");
+                            $("#dialog2").find(".weui_dialog_bd").text("服务器错误").parent().parent().show();
+                            $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                                $('#dialog2').hide();
+                            });
+                        }
+                    });
+                }
+            }
+        })
+
+        $(document).ready(function () {
+
+            initPublish();
+
+        });
+        function initPublish() {
+            var user = $('#user').attr('value').toString().trim();
+            var userNo = $('#userNo').attr('value').toString().trim();
+            var userType = $('#userType').attr('value').toString().trim();
+            var postData = {
+                UserID: user,
+                UserNO: userNo,
+                Type: userType
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Recruitment/LoadEvaluation",
+                timeout: 900000, //超时时间设置，单位毫秒
+                contentType: "application/json",//这个一定要加上哟！
+                dataType: "json",
+                data: JSON.stringify(postData),
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#review-submit').parent().hide();
+                        $.each(data, function (index, item) {
+                            $(".choice").each(function (i) {
+                                var hdgsh = $(this);
+                                $(this).find("a").each(function (j) {
+                                    if (hdgsh.attr("data-seqnr") == $.trim(item.QuestionID)
+                                        && $(this).attr("data-value") == $.trim(item.Score)) {
+                                        $(this).removeClass('radio-one');
+                                        $(this).addClass("radio-one-checked");
+                                        //$(this).attr("checked", 'true');
+                                    }
+                                });
+                            });
+                            $('#contactJobField').val(item.UserPosition);
+                            $('#contactEvaluationField').val($.trim(item.Evaluation));
+                            $('#contactInterviewField').val(item.MSEvaluation);
+
+                        });
+                    }
+                },
+                fail: function (data) {
+                    $("#review-submit").attr("value", "提交").attr("disabled", "");
+                    $("#dialog2").find(".weui_dialog_bd").text("服务器错误").parent().parent().show();
+                    $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                        $('#dialog2').hide();
+                    });
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+0.github创建一个repo
+	$ : git clone https://github.com/Kebolcz/myblog.git
+1.初始化一个Express项目
+	$ : npm init
+2.安装Express,并保存到Package.json
+	$ : cnpm intall express --save
+3.安装相关中间件,并save
+	$ : npm i config-lite connect-flash connect-mongo ejs express express-formidable express-session marked moment mongolass objectid-to-timestamp sha1 winston express-winston --save
+		a.	express: web 框架
+		b.	express-session: session 中间件
+		c.	connect-mongo: 将 session 存储于 mongodb，结合 express-session 使用
+		d.	connect-flash: 页面通知提示的中间件，基于 session 实现
+		e:	ejs: 模板
+		f:	express-formidable: 接收表单及文件的上传中间件
+		g:	config-lite: 读取配置文件
+		h:	marked: markdown 解析
+		i:	moment: 时间格式化
+		j:	mongolass: mongodb 驱动
+		k:	objectid-to-timestamp: 根据 ObjectId 生成时间戳
+		l:	sha1: sha1 加密，用于密码加密
+		m:	winston: 日志
+		n:	express-winston: 基于 winston 的用于 express 的日志中间件
+4.中间件config-lite是轻量的读取配置文件的模板.
+	NODE_ENV=test node app.js启动程序,则通过 require('config-lite') 会依次降级查找 config/test.js、config/test.json、config/test.node、config/test.yml、config/test.yaml 并合并 default 配置.
+5.module.exports(function(args){});用于JS抛出一个function
+	var routes = require('./router');这种方式的引入,似乎默认的起始文件就是index.js.
+	var app = requeire('express')();
+	routes(app);

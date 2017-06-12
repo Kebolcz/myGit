@@ -1,0 +1,33 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title"></view>
+        <view class="page__desc"></view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">{{ProductCode}}</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator wx:for="{{debugList}}" url="/pages/liveInstallDebug/debugDetails/index?RecordSheetCode={{item.RecordSheetCode}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" style="position:relative;overflow:hidden;">
+                <view class="weui-cell__bd">
+                    <view class="weui-media-box weui-media-box_text" style="padding:0 5px">
+                        <view class="weui-media-box__title weui-media-box__title_in-text" style="width:600rpx;margin-bottom:8px">{{index+1}}.{{item.RecordSheetName}}</view>
+                        <view class="weui-media-box__desc">
+                            <view class="processList">
+                                <progress percent="20" show-info class="" active="true" />
+                            </view>
+                        </view>
+                        <view class="weui-media-box__info" style="margin-top:8px">
+                            <view class="weui-media-box__info__meta">最后记录:黄翔</view>
+                            <view class="weui-media-box__info__meta">2017-4-28 13:00:01</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <image src="/images/finishg.png" class="waterPrint"></image>
+            </navigator>
+            
+        </view>
+    </view>
+</view>
+
+
+

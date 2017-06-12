@@ -1,0 +1,136 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="swiper-tab uf uf-he">
+        <view class="swiper-tab-list uf-f1 {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我的项目</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最近使用</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">我的收藏</view>
+      </view>
+      <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+        <swiper-item>
+          <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he">
+              <text>我的项目列表</text>
+              <text>Total:{{itemslength}}</text>
+            </view>
+            <view class="weui-panel__bd">
+              <view wx:for="{{project}}" class="weui-media-box weui-media-box_text" id="{{item.ProjectNo}}" style="position:relative;overflow:hidden;" bindtap="showProjectDetail" data-ProjectName="{{item.ProjectName}}">
+                <view class="weui-media-box__title weui-media-box__title_in-text">
+                <image src="/images/project2.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                {{item.ProjectName}}</view>
+                <view class="uf uf-hl uf-ac">
+                  <view>
+                    <view class="weui-media-box__desc">项 目 号:</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx;margin-right:10rpx;">项目经理:</view>
+                  </view>
+                  <view>
+                    <view class="weui-media-box__desc">{{item.ProjectNo?item.ProjectNo:"无"}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">{{item.ProjectManagerName?item.ProjectManagerName:"无"}}</view>
+                  </view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta"></view>
+                  <view class="weui-media-box__info__meta">调试进度</view>
+                  <view class="weui-media-box__info__meta " style="width:250rpx">
+                    <progress percent="{{item.rate}}" data-projectNo="{{item.ProjectNo}}" show-info class="uf-f1 uf-ac" active="true" />
+                  </view>
+                </view>
+                <image src="/images/{{item.rate==100?'finishg':'unfinish'}}.png" class="waterPrint"></image>
+                <image class="collect collectPosition" src="{{collectIndex[index]}}" data-indexCollect="{{index}}" catchtap="collect" data-projectNo="{{item.ProjectNo}}"></image>
+                <view class="setting" catchtap="navToManage" data-ProjectNo="{{item.ProjectNo}}" data-ProjectName="{{item.ProjectName}}">
+                  <button class="weui-btn mini-btn" type="default" size="mini" style="color:#888888">设置>>></button>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he">
+              <text>我的最近项目列表</text>
+              <text>Total:{{itemslength_recent}}</text>
+            </view>
+            <view class="weui-panel__bd">
+              <view wx:for="{{project_recent}}" class="weui-media-box weui-media-box_text" id="{{item.ProjectNo}}" style="position:relative;overflow:hidden;" bindtap="showProjectDetail" data-ProjectName="{{item.ProjectName}}">
+                 <view class="weui-media-box__title weui-media-box__title_in-text">
+                <image src="/images/project2.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                {{item.ProjectName}}</view>
+                <view class="uf uf-hl uf-ac">
+                  <view>
+                    <view class="weui-media-box__desc">项目号:</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx;margin-right:10rpx;">项目经理:</view>
+                  </view>
+                  <view>
+                    <view class="weui-media-box__desc">{{item.ProjectNo?item.ProjectNo:"无"}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">{{item.ProjectManagerName?item.ProjectManagerName:"无"}}</view>
+                  </view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta"></view>
+                  <view class="weui-media-box__info__meta">调试进度</view>
+                  <view class="weui-media-box__info__meta " style="width:250rpx">
+                    <progress percent="{{item.rate}}" show-info class="uf-f1 uf-ac" active="true" />
+                  </view>
+                </view>
+                <image src="/images/{{item.rate==100?'finishg':'unfinish'}}.png" class="waterPrint"></image>
+                <image hidden class="collect collectPosition" src="{{collectIndex[index]}}" data-projectNo="{{item.ProjectNo}}" data-indexCollect="{{index}}" catchtap="collect"></image>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he">
+              <text>我的收藏项目列表</text>
+              <text>Total:{{itemslength_star}}</text>
+            </view>
+            <view class="weui-panel__bd">
+              <view wx:for="{{project_star}}" class="weui-media-box weui-media-box_text" id="{{item.ProjectNo}}" style="position:relative;overflow:hidden;" bindtap="showProjectDetail" data-ProjectName="{{item.ProjectName}}">
+               <view class="weui-media-box__title weui-media-box__title_in-text">
+                <image src="/images/project2.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                {{item.ProjectName}}</view>
+                <view class="uf uf-hl uf-ac">
+                  <view>
+                    <view class="weui-media-box__desc">项目号:</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx;margin-right:10rpx;">项目经理:</view>
+                  </view>
+                  <view>
+                    <view class="weui-media-box__desc">{{item.ProjectNo?item.ProjectNo:"无"}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">{{item.ProjectManagerName?item.ProjectManagerName:"无"}}</view>
+                  </view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta"></view>
+                  <view class="weui-media-box__info__meta">调试进度</view>
+                  <view class="weui-media-box__info__meta " style="width:250rpx">
+                    <progress percent="{{item.rate}}" show-info class="uf-f1 uf-ac" active="true" />
+                  </view>
+                </view>
+                <image src="/images/{{item.rate==100?'finishg':'unfinish'}}.png" class="waterPrint"></image>
+                <image hidden class="collect collectPosition" src="{{collectIndex[index]}}" data-indexCollect="{{index}}" catchtap="collect"></image>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

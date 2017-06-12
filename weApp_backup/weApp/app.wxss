@@ -1,0 +1,106 @@
+/**app.wxss**/
+@import 'weui.wxss';
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/*flex layout*/
+
+.uf {
+  display: flex;
+}
+
+.uf-f1 {
+  flex: 1;
+}
+
+/*弹性盒纵向*/
+
+.uf-ver {
+  flex-direction: column;
+}
+
+/*水平两端对齐*/
+
+.uf-he {
+  justify-content: space-between;
+}
+
+/*水平居中对齐*/
+
+.uf-hc {
+  justify-content: center;
+}
+
+/*水平右对齐*/
+
+.uf-hr {
+  justify-content: flex-end;
+}
+
+/*垂直居中对齐*/
+
+.uf-ac {
+  align-items: center;
+}
+
+/*垂直底部对齐*/
+
+.uf-ab {
+  align-items: flex-end;
+}
+
+/*flex layout END*/
+
+.line {
+  height: 24rpx;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+.line-narrow {
+  height: 1px;
+  width: 100%;
+  background-color: #e0e1e2;
+}
+.weui-media-boxNew {
+  padding: 15px;
+  position: relative;
+}
+.weui-media-boxNew:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  color: #E5E5E5;
+  left: 15px;
+}
+.weui-cell__ft_in-accessNew {
+  padding-right: 13px;
+  position: relative;
+}
+.weui-cell__ft_in-accessNew:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+ 
+}

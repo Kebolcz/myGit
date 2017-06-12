@@ -1,0 +1,277 @@
+﻿@{
+    Layout = null;
+}
+@model List<WechatApp.Models.InterViewer>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>面试安排</title>
+
+    <link rel="stylesheet" href="../Contents/StylesJs/weui.min.css?ver=1.0" />
+    <link rel="stylesheet" href="../Contents/StylesJs/example.css?ver=1.0" />
+
+</head>
+<body ontouchstart>
+
+    <div class="page">
+        <div class="hd" style="padding:10px 10px 10px 0px">
+            <h4 class="page_title" style=" font-size:18px; margin:0px; width:100%">@ViewBag.UserName  面试安排</h4>
+            <input type="hidden" value="@ViewBag.UserId" id="user" />
+            <input type="hidden" value="@ViewBag.UserNo" id="userNo" />
+            <input type="hidden" value="@ViewBag.Type" id="userType" />
+        </div>
+        <div class="bd">
+            <div class="weui_cells_title"></div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_hd">面试时间</div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="datetime-local" placeholder="请输入面试时间" name="InterviewTime" id="contactInterviewTimeField" />
+                    </div>
+                </div>
+                <div class="weui_cell weui_cell_select weui_select_after">
+                    <div class="weui_cell_hd">
+                        面试地点
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select" name="InterviewPlace" id="contactInterviewPlaceField">
+                            <option value="0">---请选择---</option>
+                            <option value="BJ-W-401">BJ-W-401</option>
+                            <option value="BJ-W-402">BJ-W-402</option>
+                            <option value="BJ-W-601">BJ-W-601</option>
+                            <option value="BJ-W-602">BJ-W-602</option>
+                            <option value="BJ-W-301">BJ-W-301</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cells_title">面试官</div>
+            <div class="weui_cells weui_cells_checkbox">
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var order in Model)
+                    {
+                        if (order.Type == 1)
+                        {
+                            <text>
+                                <label class="weui_cell weui_check_label" for="@order.UserNo">
+                                    <div class="weui_cell_hd">
+                                        <input type="checkbox" class="weui_check" name="Interviewer" id="@order.UserNo" value="@order.UserNo" data-name="@order.UserName">
+                                        <i class="weui_icon_checked"></i>
+                                    </div>
+                                    <div class="weui_cell_bd weui_cell_primary">
+                                        <p>@order.UserNo @order.UserName</p>
+                                    </div>
+                                </label>
+                            </text>
+                        }
+                    }
+                }
+            </div>
+            <div class="weui_cells_title">备注</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <textarea class="weui_textarea" placeholder="请输入备注" rows="3" id="contactRemarksField" name="UserRemarks"></textarea>
+                        <div class="weui_textarea_counter"><span>0</span>/200</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bd spacing">
+                <input type="button" class="weui_btn weui_btn_primary" id="review-submit" value="提交" name="review-submit" />
+            </div>
+            <!--BEGIN dialog2-->
+            <div class="weui_dialog_alert" id="dialog2" style="display: none;">
+                <div class="weui_mask"></div>
+                <div class="weui_dialog">
+                    <div class="weui_dialog_hd"><strong class="weui_dialog_title">提示</strong></div>
+                    <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
+                    <div class="weui_dialog_ft">
+                        <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+                    </div>
+                </div>
+            </div>
+            <!--END dialog2-->
+        </div>
+        <div class="weui_msg" id="msg2" style="display: none;">
+            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">操作成功</h2>
+                <p class="weui_msg_desc">OK</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="javascript:wx.closeWindow();" class="weui_btn weui_btn_primary" onclick="wx.closeWindow();">关闭</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <script src="../Contents/StylesJs/zepto.min.js"></script>
+    <script src="../Contents/StylesJs/example.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '@ViewBag.appId',
+            timestamp: '@ViewBag.timestamp',
+            nonceStr: '@ViewBag.nonceStr',
+            signature: '@ViewBag.signature',
+            jsApiList: ['closeWindow']
+        });
+        function Score(UserID, UserNo,UserName) {
+            this.UserID = UserID;
+            this.UserNo = UserNo;
+            this.UserName = UserName;
+        }
+        function Validate() {
+            if (!$("#contactInterviewTimeField").val()) {
+                $("#dialog2").find(".weui_dialog_bd").text("面试时间不能为空").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            if (!$("#contactInterviewPlaceField").val() || $("#contactInterviewPlaceField").val() == "0") {
+                $("#dialog2").find(".weui_dialog_bd").text("请选择面试地点").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            var result = "";
+            $("input[name='Interviewer']:checked").each(function () {
+                result += $(this).val();
+            });
+            if (result == "") {
+                $("#dialog2").find(".weui_dialog_bd").text("请选择面试官").parent().parent().show();
+                $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                    $('#dialog2').hide();
+                });
+                return false;
+            }
+            return true;
+        }
+
+        $("#review-submit").click(function () {
+            var isOk = true;
+            var scores = [];
+            if (Validate()) {
+                $("input[name='Interviewer']:checked").each(function (i) {
+                    var radioChecked = $(this).val();
+                    if (radioChecked != "") {
+                        var score = new Score();
+                        score.UserID = $('#user').attr('value').toString().trim();
+                        score.UserNo = $(this).val().trim();
+                        score.UserName = $(this).attr('data-name').toString().trim();
+                        scores.push(score);
+                    }
+                });
+                if (isOk) {
+                    var user = $('#user').attr('value').toString().trim();
+                    var userNo = $('#userNo').attr('value').toString().trim();
+                    var userType = $('#userType').attr('value').toString().trim();
+                    if (!user || !userNo||!userType) {
+                        $("#dialog2").find(".weui_dialog_bd").text("参数错误").parent().parent().show();
+                        $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                            $('#dialog2').hide();
+                        });
+                        return;
+                    }
+                    var postData = {
+                        UserId: user,
+                        UserNo: userNo,
+                        Type: userType,
+                        InterviewTime: $("#contactInterviewTimeField").val(),
+                        InterviewPlace: $("#contactInterviewPlaceField").val(),
+                        Remarks: $("#contactRemarksField").val(),
+                        Users: scores
+                    };
+
+                    $("#review-submit").attr("value", "提交中...").attr("disabled", "disabled");
+                    $.ajax({
+                        type: "POST",
+                        url: "/Recruitment/Interview",
+                        timeout: 900000, //超时时间设置，单位毫秒
+                        contentType: "application/json",//这个一定要加上哟！
+                        dataType: "json",
+                        data: JSON.stringify(postData),
+                        success: function (data) {
+                            $(".bd").hide();
+                            $(".hd").hide();
+                            $(".weui_msg").show();
+                            $('#msg2').find('.weui_btn_primary').on('click', function () {
+                            });
+                        },
+                        fail: function (data) {
+                            $("#review-submit").attr("value", "提交").attr("disabled", "");
+                            $("#dialog2").find(".weui_dialog_bd").text("服务器错误").parent().parent().show();
+                            $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                                $('#dialog2').hide();
+                            });
+                        }
+                    });
+                }
+            }
+        })
+
+        $(document).ready(function () {
+
+            initPublish();
+
+        });
+        function initPublish() {
+            var user = $('#user').attr('value').toString().trim();
+            var userNo = $('#userNo').attr('value').toString().trim();
+            var userType = $('#userType').attr('value').toString().trim();
+            var postData = {
+                UserID: user,
+                UserNO: userNo,
+                Type: userType
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Recruitment/LoadInterview",
+                timeout: 900000, //超时时间设置，单位毫秒
+                contentType: "application/json",//这个一定要加上哟！
+                dataType: "json",
+                data: JSON.stringify(postData),
+                success: function (data) {
+                    if (data.InterviewPlace != null && $.trim(data.InterviewPlace != "")) {
+                        //$('#review-submit').parent().hide();
+                        var birthdayMilliseconds = parseInt($.trim(data.InterviewTime).replace(/\D/igm, ""));
+
+                        $('#contactInterviewTimeField').val(new Date(birthdayMilliseconds).toLocaleString());
+                        $('#contactInterviewPlaceField').val($.trim(data.InterviewPlace));
+                        $('#contactRemarksField').val(data.Remarks);
+                        $.each(data.Users, function (index, item) {
+                            $("input[name='Interviewer']").each(function (i) {
+                                var hdgsh = $(this);
+                                if ($.trim(hdgsh.val()) == $.trim(item.UserNo)) {
+                                    hdgsh.attr("checked", 'true');
+                                    return false;
+                                }
+                            });
+
+
+                        });
+                    }
+                },
+                fail: function (data) {
+                    $("#review-submit").attr("value", "提交").attr("disabled", "");
+                    $("#dialog2").find(".weui_dialog_bd").text("服务器错误").parent().parent().show();
+                    $('#dialog2').find('.weui_btn_dialog').on('click', function () {
+                        $('#dialog2').hide();
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

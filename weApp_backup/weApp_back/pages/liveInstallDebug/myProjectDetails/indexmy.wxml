@@ -1,0 +1,54 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he">
+              <text>项目站点列表</text>
+              <text>Total:{{itemslength}}</text>
+            </view>
+            <view class="weui-panel__bd">
+                <view wx:for="{{installPoints}}" class="weui-media-box weui-media-box_text" id="{{item.PointCode}}" bindtap="showProjectDetail" >
+                    <view style="position:relative;overflow:hidden;">
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.PointDesc}}</view>
+                        <view class="uf uf-ac uf-hl">
+                            <view class="classname">
+                                <view class="weui-media-box__desc">类型:</view>
+                                <view class="weui-media-box__desc" style="margin-top:10rpx">路局/线路:</view>              
+                                <view class="weui-media-box__desc" style="margin-top:10rpx">电务处:</view>    
+                            </view>
+                            <view class="classname">
+                                <view class="weui-media-box__desc" style="padding-left:10rpx;"><text class="">{{item.PointTypeDesc?item.PointTypeDesc:"无"}}
+                                </text></view>
+                                <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx"><text class="">{{item.PointLuJuCodeDesc?item.PointLuJuCodeDesc:"无"}}</text></view>              
+                                <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx"><text class="">{{item.PointCheDuanCodeDesc?item.PointCheDuanCodeDesc:"无"}}</text></view>    
+                            </view>
+                            
+                        </view>
+                        <view class="togglebtn weui-media-box__desc toggle uf uf-ac uf-hc" style="color:#353535" data-toggleIndex="{{index}}" catchtap="widgetsToggle">
+                            <label>产品列表</label>
+                            <image class="togglePng" src="/images/toggle.png" style="transform:rotate({{hiddenView[index]?'180deg':'0deg'}})">
+                            </image>
+                        </view>
+                        <view class="processStation">
+                            <progress percent="20" show-info class="" active="true" />
+                        </view>
+                    </view>
+                    <view style="margin:5rpx auto;" hidden="{{hiddenView[index]}}">
+                       <view class="productList weui-cells weui-cells_in-small-appmsg">
+                        <navigator wx:for="{{installProducts}}" wx:for-item="item2" data-productCode="{{item2.ProductCode}}" url="/pages/liveInstallDebug/productReportList/index?ProductCode={{item2.ProductCode}}&PointCode={{item.PointCode}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" style="padding:5rpx 10px;">
+                            <view class="weui-cell__hd"><image src="/images/product.png" style="width: 20px;height: 20px;margin-right: 5px" /></view>
+                            <view class="weui-cell__bd weui-cell_primary" style="color:#353535;width:400rpx;">
+                                <view>{{item2.ProductDesc}}</view>
+                            </view>
+                            <view class="processProduct">
+                                <progress percent="20" show-info class="" active="true" />
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </navigator>
+                    </view> 
+                    </view>
+                    
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

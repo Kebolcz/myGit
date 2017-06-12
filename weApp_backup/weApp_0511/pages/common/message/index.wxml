@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tip}}</view>
+    <view class="weui-grids">
+      <block wx:for="{{grids}}" wx:key="*this">
+        <view class="weui-grid" hover-class="weui-grid_active" bindtap="navToNext">
+          <view class="weui-cell__hd" style="position: relative;">
+            <image src="{{item.url}}" class="weui-grid__icon" style="width: 50px; height: 50px; display: block" />
+            <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{{item.count}}</view>
+          </view>
+          <view class="weui-grid__label">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+    <view class="uf">
+      <view class="title uf-f1">今日寿星</view>
+      <view class="title">{{lunar}}</view>
+    </view>
+    <view class="weui-grids">
+      <block wx:for="{{grids2}}" wx:key="*this">
+        <view class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon {{item.gender==='male'?'male':'female'}}" src="{{item.gender==='male'?'/images/message/male.png':'/images/message/female.png'}}" />
+          <view class="weui-grid__label" style="font-size:24rpx">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

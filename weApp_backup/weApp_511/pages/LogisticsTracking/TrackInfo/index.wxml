@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-panel">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text " style="padding:5px">
+          <view class="uf uf-ac uf-hl" style="position:relative;overflow:hidden;">
+            <view class="classname">
+              <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-top:15rpx;font-size: 13px;">快递编号:</view>
+              <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-top:15rpx;font-size: 13px;">快递公司:</view>
+            </view>
+            <view class="classname">
+              <view class="weui-media-box__title weui-media-box__title_in-text" style="padding-left:10rpx;margin-top:15rpx;font-size: 13px;">
+                <text class="">{{LogisticCode?LogisticCode:"无"}}</text>
+              </view>
+              <view class="weui-media-box__title weui-media-box__title_in-text" style="padding-left:10rpx;margin-top:15rpx;font-size: 13px;">
+                <text class="">{{ShipperName?ShipperName:"无"}}</text>
+              </view>
+            </view>
+          </view>        
+        </view>
+         <view class="line"></view>
+        <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 1px">
+          <text class="titlehead"> 
+          </text>
+        </view>
+        <view wx:for="{{Traces}}" wx:key="AcceptStation" class="weui-media-boxNew weui-media-box_text " style="padding:5px ">
+          <view class="weui-media-box__desc " style="padding-left:10rpx; ">
+            <text class=" ">{{item.AcceptStation?item.AcceptStation:"无 "}}
+            </text>
+          </view>
+          <view class="weui-media-box__desc " style="padding-left:10rpx; ">
+            <text class=" "> {{item.AcceptTime?item.AcceptTime:"无 "}}
+            </text>
+          </view>
+          <view class="line-narrow" ></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

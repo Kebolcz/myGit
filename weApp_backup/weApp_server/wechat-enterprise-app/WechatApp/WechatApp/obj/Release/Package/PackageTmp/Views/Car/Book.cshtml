@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "预定";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="material-box container">
+    <div class="one-half-responsive">
+        <div class="container no-bottom">
+            @if (ViewBag.BookSuccessful != null && ViewBag.BookSuccessful)
+            {
+                <text>
+                <div class="formSuccessMessageWrap" id="orderFormSuccessMessageWrap">
+                    <div class="big-notification green-notification">
+                        <h3 class="uppercase">提交成功！ </h3>
+                        <a href="#" class="close-big-notification">x</a>
+                        <p>你已经预定成功，可以到订单管理里查看预定的车辆信息。</p>
+                    </div>
+                </div>
+                </text>
+            }
+            @if(ViewBag.Error != null && ViewBag.Error)
+            {
+                <div class="formFailMessageWrap" id="orderFormFailMessageWrap">
+                <div class="big-notification red-notification">
+                    <h3 class="uppercase">提交失败！ </h3>
+                    <a href="#" class="close-big-notification">x</a>
+                    <p>发生错误，请稍后重试。</p>
+                </div>
+                </div>
+            }
+            @if (ViewBag.BookSuccessful == null && ViewBag.Error == null)
+            { 
+            <form action="@("/car/book?date="+ViewBag.Date)" method="post" class="orderForm" id="orderForm">
+                <fieldset>
+                    <div class="formValidationError" id="timeFieldNullError">
+                        <div class="static-notification-red tap-dismiss-notification">
+                            <p class="center-text uppercase">出发时间是必填的</p>
+                        </div>
+                    </div>
+                    <div class="formValidationError" id="originFieldNullError">
+                        <div class="static-notification-red tap-dismiss-notification">
+                            <p class="center-text uppercase">出发地点是必填的</p>
+                        </div>
+                    </div>
+                    <div class="formValidationError" id="destinationFieldNullError">
+                        <div class="static-notification-red tap-dismiss-notification">
+                            <p class="center-text uppercase">到达地点是必填的</p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="person" value="@ViewBag.UserId" class="personField requiredField textField" id="personField" />
+                    <input type="hidden" name="car" value="@ViewBag.CarId" class="carField requiredField textField" id="carField" />
+
+                    <div class="formFieldWrap">
+                        <label class="field-title timeNameField textNameField" for="TimeField">开始时间:<span>(必选)</span></label>
+                        <input type="time" name="begTime" value="" class="timeField requiredField textField" id="timeField" />
+                    </div>
+                    <div class="formFieldWrap">
+                        <label class="field-title originNameField textNameField" for="originField">出发地点:<span>(必选)</span></label>
+                        <input type="text" name="origin" value="" class="originField requiredField textField" id="originField" />
+                    </div>
+                    <div class="formFieldWrap">
+                        <label class="field-title destinationNameField textNameField" for="destinatonField">到达地点:<span>(必选)</span></label>
+                        <input type="text" name="destination" value="" class="destinationField requiredField textField" id="destinationField" />
+                    </div>
+                    <div class="formSubmitButtonErrorsWrap">
+                        <input type="submit" class="buttonWrap button button-green orderSubmitButton" id="orderSubmitButton" value="提交" data-formid="orderForm" />
+                    </div>
+                </fieldset>
+            </form>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $ = Window.Jquery;
+    $(function () {
+        $('.formValidationError').hide();
+        $('#orderSubmitButton').onclick = function () {
+            var time = $('#timeField').val();
+            var origin = $('#orginField').val();
+            var destination = $('#destinationField').val();
+            if (!time) {
+                return $('#timeFieldNullError').show();
+            }
+            if (!origin) {
+                return $('#originFieldNullError').show();
+            }
+            if (!destination) {
+                return $('#destinationFieldNullError').show();
+            }
+            return true;
+        }
+    });
+</script>

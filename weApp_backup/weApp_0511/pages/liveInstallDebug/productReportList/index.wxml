@@ -1,0 +1,33 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title"></view>
+        <view class="page__desc"></view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">{{ProductDesc}}</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator wx:for="{{debugList}}" url="/pages/liveInstallDebug/debugDetails/index?RecordSheetCode={{item.RecordSheetCode}}&ProjectNo={{ProjectNo}}&ProductCode={{ProductCode}}&PointCode={{PointCode}}&RecordSheetVersion={{item.RecordSheetVersion}}&ProductDesc={{ProductDesc}}&ID={{hasEditList[item.RecordSheetCode]?hasEditList[item.RecordSheetCode].ID:''}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" style="position:relative;overflow:hidden;">
+                <view class="weui-cell__bd">
+                    <view class="weui-media-box weui-media-box_text" style="padding:0 5px">
+                        <view class="weui-media-box__title weui-media-box__title_in-text" style="width:600rpx;margin-bottom:8px">{{index+1}}.{{item.RecordSheetName}}</view>
+                        <view class="weui-media-box__desc">
+                            <view class="processList">
+                                <progress percent="100" show-info class="" active="true" />
+                            </view>
+                        </view>
+                        <view class="weui-media-box__info" style="margin-top:8px">
+                            <view class="weui-media-box__info__meta">{{hasEditList[item.RecordSheetCode]?('最后操作人:'+hasEditList[item.RecordSheetCode].CreateUser+'  最后操作日期：'+hasEditList[item.RecordSheetCode].CreateTime):'无操作记录'}}</view>
+                            <view class="weui-media-box__info__meta"></view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <image src="/images/finishg.png" class="waterPrint"></image>
+            </navigator>
+            
+        </view>
+    </view>
+</view>
+
+
+

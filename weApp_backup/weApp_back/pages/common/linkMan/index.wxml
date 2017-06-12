@@ -1,0 +1,72 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="swiper-tab uf uf-he">
+        <view class="swiper-tab-list uf-f1 ellipsis {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">{{titleTab}}</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">公司部门</view>
+      </view>
+      <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+        <swiper-item>
+          <view class="uf uf-he uf-ac">
+            <view class="uf uf-he uf-ac">
+              <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+              <view class="weui-cells__title">{{userInfo.nickName}}</view>
+            </view>
+            <view class="weui-cells__title">Total:{{resultCount>0?resultCount:0}}</view>
+          </view>
+          <view class="weui-cells_after-title">
+            <!--<image src="/images/divider.png" style="width:750rpx; height: 2rpx;"></image>-->
+            <view class="weui-cell info">
+              <view class="weui-cell__hd" style="margin-left:40rpx;">
+                <image src="/images/man.png" style="margin-right: 10rpx;vertical-align: middle;width:108rpx; height: 108rpx;"></image>
+              </view>
+              <view class="weui-cell__hd detail" style="width:480rpx;margin-left:60rpx;position:relative;">
+                <view class="weui-cell uf uf-he">
+                  <view class="weui-cell__ft">61106</view>
+                  <view class="weui-cell__ft">梁晓龙</view>
+                  <view class="weui-cell__ft">北京行政人事部</view>
+                </view>
+                <view class="weui-cell tel">
+                  <view class="weui-cell__ft">座机:</view>
+                  <view class="weui-cell__ft">86-10-68029115-6273</view>
+                  <view class="weui-cell__hd">
+                    <image src="/images/add.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                  </view>
+                </view>
+                <view class="weui-cell phone">
+                  <view class="weui-cell__ft">手机:</view>
+                  <view class="weui-cell__ft">13693069798</view>
+                  <view class="weui-cell__hd">
+                    <image src="/images/add_circle.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!--<image src="/images/divider.png" style="width:750rpx; height: 2rpx;"></image>-->
+          </view>
+        </swiper-item>
+        <swiper-item>
+          2
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

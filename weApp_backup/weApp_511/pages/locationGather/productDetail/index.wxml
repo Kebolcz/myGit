@@ -1,0 +1,166 @@
+<view class="page">
+  <view class="page__hd"></view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="swiper-tab uf uf-he">
+        <view class="swiper-tab-list uf-f1 {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">扫一扫收集</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">拍照收集</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已收集信息</view>
+      </view>
+      <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+        <swiper-item>
+          <view class="scanInfo">
+            <view class="weui-cells__title uf-f1">扫描收集</view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input uf uf-ac">
+                <view class="weui-cell__hd">
+                  <view class="weui-label">序列号:</view>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input color-grey" placeholder="请扫描或者输入完整序列号" value="{{scanCodeInfo}}" bindinput="inputCode" />
+                </view>
+                <image hidden="{{!scanCheck}}" bindtap="scanCode" src="/images/scan.png"></image>
+                <image hidden="{{scanCheck}}" bindtap="searchSN" src="/images/add_4.png" style="margin-right: 5px;vertical-align: middle;width:40px; height: 40px;"></image>
+              </view>
+              <view class="weui-cell weui-cell_input uf uf-ac">
+                <view class="weui-cell__hd">
+                  <view class="weui-label">物料号:</view>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input color-grey" disabled placeholder="物料号" value="{{scanCodeQTInfo.MaterialNo}}" />
+                </view>
+                <image hidden="{{snCheck}}" bindtap="chooseProduct" src="/images/search.png"></image>
+              </view>
+              <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                  <view class="weui-label">描 述:</view>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input color-grey" disabled placeholder="描述" value="{{scanCodeQTInfo.EquipmentDesc}}" />
+                </view>
+              </view>
+            </view>
+            <view class="weui-cells__tips" style="text-align:center;font-size:24rpx;">扫描记录会保存在本地,可统一上传到服务器。</view>
+          </view>
+          <view class="scanRecord">
+            <view class="uf uf-ac">
+              <view class="weui-cells__title uf-f1">扫描记录</view>
+              <text class="weui-cells__title">Total:{{scanCount?scanCount:0}}</text>
+            </view>
+            <view class="weui-cells weui-cells_after-title" style="position:relative;">
+              <button hidden="{{scanRecords.length<=0}}" class="weui-btn" type="primary" style="margin:0 32rpx;" bindtap="upLoadScanRecords">上传</button>
+              <image src="/images/toUpLoad.png" style="width:36rpx;height:36rpx;position:absolute;top:30rpx;left:292rpx;"></image>
+              <view wx:for="{{scanRecords}}" wx:key="EquipmentSerialNumber" wx:for-index="idx" class="weui-cell" style="position:relative;">
+                <view class="weui-cell__hd uf uf-ver">
+                  <view class="uf uf-ac">
+                    <image src="/images/record.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <view class="weui-cell__bd ellipsis">{{item.EquipmentDesc}}</view>
+                  </view>
+                  <view class="uf uf-ver" style="padding:12rpx 0;">
+                    <view class="weui-media-box__desc">序列号：{{item.EquipmentSerialNumber}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">物料号：{{item.MaterialNo}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">收集时间：{{item.CreateTime}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">维护人：{{item.UserNo}}</view>
+                    <text style="position:absolute;right:48rpx;bottom:144rpx;font-size:28rpx;color:#E64340;font-weight:bold;">待上传</text>
+                    <button id="{{idx}}" class="weui-btn" type="warn" size="mini" bindtap="deleteScan" style="position:absolute;right:36rpx;bottom:32rpx;">删除</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="weui-cell weui-cell_input weui-cell_vcode" style="border-top:1rpx solid #D9D9D9;border-bottom:1rpx solid #D9D9D9;margin-top:-1rpx;">
+            <view class="weui-cell__hd">
+              <view class="weui-label">描述</view>
+            </view>
+            <view class="weui-cell__bd color-grey">
+              <input class="weui-input" bindinput="bindKeyInput" value="照片{{photoCount+1}}" />
+            </view>
+            <view class="weui-cell__ft" data-desc="照片{{photoCount+1}}" bindtap="storePhotoRecord">
+              <view class="weui-vcode-btn">保存</view>
+            </view>
+          </view>
+          <view class="weui-cells" style="margin-top:-1rpx;">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">图片上传</view>
+                    <view class="weui-uploader__info">{{files.length?files.length:0}}/6</view>
+                  </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                      <block wx:for="{{files}}" wx:key="*this" wx:for-index="idx">
+                        <view class="weui-uploader__file" bindlongtap="deleteFiles" data-index="{{idx}}" id="{{item}}">
+                          <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                        </view>
+                      </block>
+                    </view>
+                    <view hidden="{{fileNum>=6}}" class="weui-uploader__input-box">
+                      <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__tips" style="text-align:center;font-size:24rpx;">拍照记录会保存在本地,可统一上传到服务器。</view>
+          <view class="scanRecord" style="border-top:10rpx solid #ebebeb;">
+            <view class="uf uf-ac">
+              <view class="weui-cells__title uf-f1">上传记录</view>
+              <text class="weui-cells__title">Total:{{photoCount?photoCount:0}}</text>
+            </view>
+            <view class="weui-cells weui-cells_after-title" style="position:relative;">
+              <button hidden="{{photoRecordList.length<=0}}" class="weui-btn" type="primary" style="margin:0 32rpx;" bindtap="upLoadPhotoRecords">上传</button>
+              <image src="/images/toUpLoad.png" style="width:36rpx;height:36rpx;position:absolute;top:30rpx;left:292rpx;"></image>
+              <view wx:for="{{photoRecordList}}" wx:key="CreateTime" wx:for-index="idx" class="weui-cell" style="position:relative;">
+                <view class="weui-cell__hd uf uf-ver">
+                  <view class="uf uf-ver" style="padding:12rpx 0;">
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">维护人：{{item.UserNo}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">收集时间：{{item.CreateTime}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">描述：{{item.Desc}}</view>
+                    <text style="position:absolute;right:48rpx;bottom:144rpx;font-size:28rpx;color:#E64340;font-weight:bold;">待上传</text>
+                    <button id="{{idx}}" class="weui-btn" type="warn" size="mini" bindtap="deletePhoto" style="position:absolute;right:36rpx;bottom:32rpx;">删除</button>
+                  </view>
+                  <view class="uf uf-ac">
+                    <block wx:for="{{item.files}}" wx:key="*this">
+                      <view class="weui-uploader__file" bindtap="previewRecordImage" data-index="{{idx}}" id="{{item}}">
+                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="scanRecord">
+            <view class="uf uf-ac">
+              <view class="weui-cells__title uf-f1">已收集信息</view>
+              <text class="weui-cells__title">Total:{{equipmentCount?equipmentCount:0}}</text>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view wx:for="{{records}}" wx:key="EquipmentSerialNumber" wx:for-index="idx" class="weui-cell" style="position:relative;">
+                <view class="weui-cell__hd uf uf-ver">
+                  <view class="uf uf-ac">
+                    <image src="/images/record.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <view class="weui-cell__bd ellipsis">{{item.EquipmentDesc}}</view>
+                  </view>
+                  <view class="uf uf-ver" style="padding:12rpx 0;">
+                    <view class="weui-media-box__desc">序列号：{{item.EquipmentSerialNumber}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">物料号：{{item.MaterialNo}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">收集时间：{{item.CreateTime}}</view>
+                    <view class="weui-media-box__desc" style="margin-top:10rpx">维护人：{{item.UserNo}}</view>
+                    <icon id="{{idx}}" hidden type="cancel" bindtap="deleteRecord" size="32" style="position:absolute;right:36rpx;bottom:32rpx;"></icon>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

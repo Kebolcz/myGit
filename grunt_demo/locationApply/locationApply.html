@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>国内商务出差Plus</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="css/bootstrap.min_v3.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/locationApply.css"/>
+        <style type="text/css">
+            ::-webkit-input-placeholder {/* WebKit browsers */
+                color: #ccc !important;
+            }
+            .reposition {
+                width: 15rem;
+                background: #5cb85c url(../css/img/position.png) no-repeat left 2rem center;
+                background-size: 1rem 1.5rem;
+            }
+            #reasonArea {
+                width: 100%;
+                outline: none;
+                -webkit-appearance: none;
+                border: 0.2rem solid #ccc;
+                text-indent: 0.5rem;
+                font-size: 0.8rem;
+                -webkit-box-flex: 1;
+                border-radius: 5px;
+                box-shadow: 2px -2px 6px rgb(202, 202, 202);
+            }
+
+        </style>
+    </head>
+    <body class="um-vp" ontouchstart>
+        <div tabindex="0" data-control="PAGE" id="Page">
+            <!--Header Start-->
+            <div id="header" class="uh ub">
+                <div class="nav-btn ub ub-pc ub-ac" id="nav-left">
+                    <div class="umar-l icon_back_img">
+                        返回
+                    </div>
+                </div>
+                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">安装地变更</h1>
+                <div class="nav-btn nav-bt" id="submit">
+                    提交
+                </div>
+            </div>
+
+            <!-- <header unselectable="on" onselectstart="return false;">
+            <div class="header_text">
+            <div class="header_text_title hLineC">
+            安装地变更
+            </div>
+            </div>
+            <div class="icon_back hLineC">
+            <div class="icon_back_img hLineC">
+            返回
+            </div>
+            </div>
+            <div class="icon_submit hLineC" id="submit">
+            提交
+            </div>
+            </header> -->
+            <!--Header End-->
+            <!--Content Start-->
+            <div id="content">
+                <section id="addSec">
+                    <button id="addBtn" type="button" class="more-partner">
+                        添加变更项
+                    </button>
+                </section>
+
+                <section id="main">
+                    <ul id="todo-list">
+
+                    </ul>
+                </section>
+                <section>
+                    <textarea id="reasonArea" name="reasonArea" rows="4" placeholder="安装地变更原因"></textarea>
+                    <div class="ub ub-pc ub-ac">
+                        <div id="pleaseSpeak"></div>
+                    </div>
+                </section>
+                <!--Content End-->
+
+                <div id="instructions"></div>
+            </div>
+        </div>
+
+        <script type="text/template" id="item-template">
+            <div class="title">
+            <p><%- num %>. <%- title %></p>
+            <span class="liBtn delBtn">删除</span>
+            <!-- <span class="liBtn collapseBtn">展开</span> -->
+            <!-- <i class="arrow-icon iColl"></i> -->
+            </div>
+            <div class="panel">
+            <label> <span>安装地标识</span>
+            <input type="text" class="form-control locIde choice" code="<%- locIdeCode %>" value="<%- locIdeCode%>" name="LocationIdentification" readOnly placeholder="安装地标识">
+            </label>
+            <label> <span>车站类型</span>
+            <div>
+            <select name="stationType" value="<%- typeCode %>" class="form-control type">
+            <option value="0" <%= typeCode === '0'? 'selected' : ''%>>请选择</option>
+            <option value="1" <%= typeCode === '1'? 'selected' : ''%>>国铁车站</option>
+            <option value="2" <%= typeCode === '2'? 'selected' : ''%>>国铁车载</option>
+            <option value="3" <%= typeCode === '3'? 'selected' : ''%>>地铁车站</option>
+            <option value="4" <%= typeCode === '4'? 'selected' : ''%>>地铁车载</option>
+            <option value="5" <%= typeCode === '5'? 'selected' : ''%>>地方铁路</option>
+            <option value="6" <%= typeCode === '6'? 'selected' : ''%>>国外铁路</option>
+            </select>
+            </div> </label>
+            <label> <span>路局、地铁、地方铁路公司</span>
+            <input type="text" class="form-control rwCorp choice setAtt" code="<%- rwCorpCode %>" value="<%- rwCorpDesc%>" name="railwayCorp" readOnly placeholder="路局、地铁、地方铁路公司">
+            </label>
+            <label> <span>电务段、地铁线路</span>
+            <input type="text" class="form-control rwSec choice setAtt" code="<%- rwSecCode %>" value="<%- rwSecDesc%>" name="railwaySection" readOnly placeholder="电务段、地铁线路">
+            </label>
+            <label> <span>安装地名称</span>
+            <input type="text" class="form-control desc" value="<%- descDesc%>" name="description" placeholder="安装地">
+            </label>
+            <label> <span>国家</span>
+            <input type="text" class="form-control country choice setAtt" code="<%- countryCode %>" value="<%- countryDesc%>" name="country" readOnly placeholder="国家">
+            </label>
+            <div class="beCenter">
+            <button type="button" class="btn btn-success reposition">经纬度定位</button>
+            </div>
+            <label> <span>经度</span>
+            <input type="text" class="form-control longitude" value="<%- longitude%>" name="longitude" placeholder="经度">
+            </label>
+            <label> <span>纬度</span>
+            <input type="text" class="form-control latitude" value="<%- latitude%>" name="latitude" placeholder="纬度">
+            </label>
+            </div>
+        </script>
+
+        <script src="../js/appcan.js"></script>
+        <script src="../js/appcan.control.js"></script>
+        <script src="../js/app.common.js"></script>
+        <script src="../js/app.config.js"></script>
+        <script src="../js/appcan.request.js"></script>
+        <script src="js/underscore.js"></script>
+        <script src="js/backbone-min.js"></script>
+        <script src="js/locationApply.js"></script>
+        <script type="text/javascript">
+            appcan.ready(function() {
+                //物理像素
+                var screenWidth = document.documentElement.clientWidth;
+                //像素密度
+                var scale = 20 * 4;
+                $("html").css("font-size", Math.floor(screenWidth / scale) * 4 + "px");
+                //调用讯飞语音插件
+                appcan.setLocVal("voiceInputID", "reasonArea");
+                includeVoiceRec("voiceRecognizer.html", "pleaseSpeak");
+
+                appcan.button("#nav-left", "btn-act", function() {
+                    appcan.window.close(-1);
+                });
+
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索关键字显示前20条数据</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="swiper-tab uf uf-he">
+        <view class="swiper-tab-list uf-f1 {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">物料信息列表</view>
+        <view class="swiper-tab-list uf-f1 {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最近使用</view>
+      </view>
+      <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+        <swiper-item>
+          <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he" style="border-top:4rpx solid #ccc;margin-top:6rpx;">
+              <text>物料信息</text>
+              <text>Total:{{setsCount?setsCount:0}}</text>
+            </view>
+            <view wx:for="{{sets}}" wx:key="MaterialNo" id="{{item.MaterialNo}}" data-desc="{{item.EquipmentDesc}}" bindtap="chooseMaterial" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <view class="uf uf-ver">
+                  <view class="uf uf-ac">
+                    <image src="/images/star.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <view class="weui-cell__bd">{{item.MaterialNo?item.MaterialNo:"无"}}</view>
+                  </view>
+                  <view class="uf uf-hr">
+                    <view class="weui-cell__ft weui-cell__ft_in-access ellipsis">{{item.EquipmentDesc?item.EquipmentDesc:"无"}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="weui-panel">
+            <view class="weui-panel__hd uf uf-he" style="border-top:4rpx solid #ccc;margin-top:6rpx;">
+              <text>最近使用</text>
+              <text>Total:{{setsCount_recent?setsCount_recent:0}}</text>
+            </view>
+            <view wx:for="{{sets_recent}}" wx:key="MaterialNo" id="{{item.MaterialNo}}" data-desc="{{item.EquipmentDesc}}" bindtap="chooseMaterial" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <view class="uf uf-ver">
+                  <view class="uf uf-ac">
+                    <image src="/images/star.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <view class="weui-cell__bd">{{item.MaterialNo?item.MaterialNo:"无"}}</view>
+                  </view>
+                  <view class="uf uf-hr">
+                    <view class="weui-cell__ft weui-cell__ft_in-access ellipsis">{{item.EquipmentDesc?item.EquipmentDesc:"无"}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

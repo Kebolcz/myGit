@@ -1,0 +1,59 @@
+/* page/liveInstallDebug/debugDetails/index.wxss */
+view{
+    font-size: 28rpx;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.card{
+    border-bottom: 1px solid #e5e5e5;
+}
+.cardbox{
+    border: 1px solid #e5e5e5;
+    box-shadow: 0px 3px 5px #d8d8d8;
+}
+.content{
+    padding: 8rpx;
+    font-size: 26rpx;
+    color: #888888;
+}
+.radioContent{
+    padding: 8rpx;
+    font-size: 22rpx;
+    color:#353535;
+}
+.section{
+    padding: 10rpx;
+    padding-left: 20rpx;
+    border-top: 1px solid #e5e5e5;
+}
+
+.toggle{
+  position: absolute;
+  bottom: 10rpx;
+  right: 5rpx;
+}
+.togglePng{
+  width: 35rpx;
+  height: 35rpx;
+  transform: rotate(180deg);
+}
+.togglebtn{
+    padding:0 10rpx;
+    border: 1px solid #e5e5e5;
+    border-radius:8rpx;
+    box-shadow: 0px 3px 5px #d8d8d8;
+}
+.weui-uploader__input-box::after {
+    width:20px;
+    height:2px;
+}
+.weui-uploader__input-box::before {
+    width:2px;
+    height:20px;
+}
+.weui-uploader__img {
+display:block;
+width:40px;
+height:40px;
+}
+
+

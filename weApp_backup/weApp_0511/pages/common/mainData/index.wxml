@@ -1,0 +1,59 @@
+<view class="page">
+  <view class="page__hd">
+    <view wx:if="{{isTypePoint}}" class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索关键字显示前20条数据</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-panel">
+      <view class="weui-panel__hd uf uf-he" style="border-top:4rpx solid #ccc;margin-top:6rpx;">
+        <text>{{title}}</text>
+        <text>Total:{{setsCount}}</text>
+      </view>
+      <view class="weui-panel__bd">
+        <view wx:if="{{isTypePoint}}" wx:for="{{sets}}" wx:key="PointCode" class="weui-media-box weui-media-box_text" data-desc="{{item.PointDesc}}" id="{{item.PointCode}}" bindtap="choosePoint">
+          <view class="weui-media-box__title weui-media-box__title_in-text"><image src="/images/point.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>{{item.PointDesc}}</view>
+          <view class="uf uf-ac uf-he" style="position:relative;overflow:hidden;">
+            <view class="classname">
+              <view class="weui-media-box__desc">车站类型:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">路局/线路:</view>
+              <view class="weui-media-box__desc" style="margin-top:10rpx">电 务 处:</view>
+            </view>
+            <view class="classname">
+              <view class="weui-media-box__desc" style="padding-left:10rpx;text-align:right;">
+                <text class="">{{item.PointTypeDesc?item.PointTypeDesc:"无"}}
+                </text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx;text-align:right;">
+                <text class="">{{item.PointLuJuCodeDesc?item.PointLuJuCodeDesc:"无"}}</text>
+              </view>
+              <view class="weui-media-box__desc" style="padding-left:10rpx;margin-top:10rpx;text-align:right;">
+                <text class="">{{item.PointCheDuanCodeDesc?item.PointCheDuanCodeDesc:"无"}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{!isTypePoint}}" wx:for="{{sets}}" wx:key="ProductCode" id="{{item.ProductCode}}" data-desc="{{item.ProductDesc}}" bindtap="chooseProduct" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd uf uf-ac">
+            <image src="/images/product3.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </view>
+          <view class="weui-cell__bd">{{item.ProductCode?item.ProductCode:"无"}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access ellipsis">{{item.ProductDesc?item.ProductDesc:"无"}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="zh-cmn-Hans">
+    <meta charset="utf-8">
+    <meta name="description" content="starter-kit">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Semantic-ui-react</title>
+    <link rel="stylesheet" href="../../lib/css/semantic.min.css">
+    <style type="text/css">
+        body,
+        html,
+        #root {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #root .container {
+            margin: 0 !important;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #root .container>.buttons {
+            width: 100%;
+        }
+
+        #root .container>.buttons button {
+            background: #0e90d2;
+            color: #fff;
+        }
+
+        .ui.buttons .button {
+            flex: 1 !important;
+            -webkit-flex: 1 !important;
+        }
+
+        .ui.buttons>button:nth-child(2) {
+            flex: 2 !important;
+            -webkit-flex: 2 !important;
+        }
+
+        .ui[class*="right labeled"].icon.button {
+            padding-right: 2.47142857em!important;
+            padding-left: 0.5em!important;
+        }
+
+        .ui[class*="left labeled"].icon.button {
+            padding-left: 2.47142857em!important;
+            padding-right: 0.5em!important;
+        }
+
+        .uf-f1 {
+            flex: 1;
+        }
+
+        .page-layout {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sideBarTitle {
+            padding: 0.5rem 1rem !important;
+            margin: 0.5rem 1rem !important;
+            color: #fff !important;
+            position: relative;
+        }
+
+        .ui.thin.left.sidebar,
+        .ui.thin.right.sidebar {
+            width: 6rem;
+        }
+
+        .sidePanel {
+            margin-top: 0 !important;
+            display: flex;
+        }
+
+        .overlay {
+            font-size: 0.9rem !important;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .results {
+            overflow-y: auto !important;
+            height: 22rem !important;
+        }
+
+        .ui.selection.dropdown .menu {
+            max-height: 12.014286rem;
+        }
+
+        .list .item {
+            display: flex !important;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list .item label {
+            font-weight: 700;
+            width: 6.8rem;
+        }
+
+        .inputRight {
+            width: 14rem !important;
+            max-width: 14rem !important;
+            min-width: 14rem !important;
+        }
+        .inputRight div:first-child{
+            width: 100% !important;
+        }
+        .inputRight input {
+            border-radius: 0 !important;
+        }
+
+        .subInputRight {
+            width: 13.5rem !important;
+            max-width: 13.5rem !important;
+            min-width: 13.5rem !important;
+        }
+        .subInputRight div:first-child{
+            width: 100% !important;
+        }
+        .subInputRight input {
+            border-radius: 0 !important;
+        }
+
+        .addTripBtn {
+            margin-top: 1rem !important;
+        }
+
+        .deleteTripBtn {
+            position: absolute;
+            right: 0;
+            top: -2.8rem;
+        }
+
+        .tripList {
+            position: relative;
+        }
+        .toggle label {
+            width: auto !important;
+        }
+        .beCenter {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        textarea {
+            min-height: 2.7rem !important;
+        }
+        .tableaction .item:last-child {
+            overflow: auto;
+        }
+        .titleEllipsis {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 15rem;
+        }
+        .accordion .content {
+            padding-left: 0.5em !important;
+            padding-right: 0.5em !important;
+        }
+        .accordion .ui.list .list {
+            padding: 0.75em 0 0.25em !important
+        }
+        .ui.input input {
+            padding: .67857143em .5em;
+        }
+        small {
+            position: absolute;
+            left: 0.5rem;
+            font-weight: 300;
+        }
+        .pointing .item {
+            width: 33.3%;
+            font-weight: 700 !important;
+            font-size: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="../../../js/appcan.js"></script>
+    <script src="../../../js/appcan.control.js"></script>
+    <script src="../../../js/app.common.js"></script>
+    <script src="../../../js/app.config.js"></script>
+    <script src="../../lib/appcan.request.js"></script>
+    <script src="../../lib/common.js"></script>
+    <!-- build:js -->
+    <script src="./src/index.js"></script>
+    <!-- endbuild -->
+    <script type="text/javascript">
+        appcan.ready(function () {
+            var u = navigator.userAgent;
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if(isiOS){
+                $('#header').css({"padding-top":"1.35rem","background-color":"#0E90D2"});
+            }
+            var screenWidth = document.documentElement.clientWidth;
+            var scale = 20;
+            $("html").css("font-size", Math.floor(0.9 * screenWidth / scale) + "px");
+        });
+    </script>
+</body>
+
+</html>

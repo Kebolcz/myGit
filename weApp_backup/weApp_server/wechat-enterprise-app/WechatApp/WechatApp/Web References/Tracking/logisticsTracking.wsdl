@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getLTRecordBySN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="serialNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLTRecordBySNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLTRecordBySNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getXMLLTRecordBySN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="serialNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getXMLLTRecordBySNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getXMLLTRecordBySNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getLTRecordBySNSoapIn">
+    <wsdl:part name="parameters" element="tns:getLTRecordBySN" />
+  </wsdl:message>
+  <wsdl:message name="getLTRecordBySNSoapOut">
+    <wsdl:part name="parameters" element="tns:getLTRecordBySNResponse" />
+  </wsdl:message>
+  <wsdl:message name="getXMLLTRecordBySNSoapIn">
+    <wsdl:part name="parameters" element="tns:getXMLLTRecordBySN" />
+  </wsdl:message>
+  <wsdl:message name="getXMLLTRecordBySNSoapOut">
+    <wsdl:part name="parameters" element="tns:getXMLLTRecordBySNResponse" />
+  </wsdl:message>
+  <wsdl:portType name="logisticsTrackingSoap">
+    <wsdl:operation name="getLTRecordBySN">
+      <wsdl:input message="tns:getLTRecordBySNSoapIn" />
+      <wsdl:output message="tns:getLTRecordBySNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getXMLLTRecordBySN">
+      <wsdl:input message="tns:getXMLLTRecordBySNSoapIn" />
+      <wsdl:output message="tns:getXMLLTRecordBySNSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="logisticsTrackingSoap" type="tns:logisticsTrackingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLTRecordBySN">
+      <soap:operation soapAction="http://tempuri.org/getLTRecordBySN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getXMLLTRecordBySN">
+      <soap:operation soapAction="http://tempuri.org/getXMLLTRecordBySN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="logisticsTrackingSoap12" type="tns:logisticsTrackingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLTRecordBySN">
+      <soap12:operation soapAction="http://tempuri.org/getLTRecordBySN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getXMLLTRecordBySN">
+      <soap12:operation soapAction="http://tempuri.org/getXMLLTRecordBySN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="logisticsTracking">
+    <wsdl:port name="logisticsTrackingSoap" binding="tns:logisticsTrackingSoap">
+      <soap:address location="http://192.100.99.241:6200/logisticsTracking.asmx" />
+    </wsdl:port>
+    <wsdl:port name="logisticsTrackingSoap12" binding="tns:logisticsTrackingSoap12">
+      <soap12:address location="http://192.100.99.241:6200/logisticsTracking.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

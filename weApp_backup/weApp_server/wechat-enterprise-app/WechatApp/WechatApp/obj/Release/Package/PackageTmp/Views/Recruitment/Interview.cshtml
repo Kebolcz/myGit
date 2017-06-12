@@ -1,0 +1,224 @@
+﻿@{
+    Layout = null;
+}
+@model List<WechatApp.Models.Question>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>面试安排</title>
+
+    <link href="~/Contents/Styles/framework.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/style.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/owl.theme.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/swipebox.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/font-awesome.css" rel="stylesheet" />
+    <link href="~/Contents/Styles/animate.css" rel="stylesheet" />
+
+    <script src="~/Contents/Scripts/jquery.js"></script>
+    <script src="~/Contents/Scripts/jqueryui.js"></script>
+    <script src="~/Contents/Scripts/framework.plugins.js"></script>
+    <script src="~/Contents/Scripts/custom.js"></script>
+    <script src="~/Contents/Scripts/jquery.validate.js"></script>
+    <style type="text/css">
+        img.responsive-image {
+            margin-bottom: 2px;
+        }
+
+        p.notification-page-item {
+            padding: 8px 20px 8px 10px;
+            margin-bottom: 10px;
+        }
+
+            p.notification-page-item i:first-child {
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                font-size: 11px;
+            }
+    </style>
+
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                页面加载中...
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+
+        <div id="content" class="snap-content">
+            <div class="static-notification-red">
+                <p class="center-text"></p>
+            </div>
+            <div class="static-notification-green">
+                <p class="center-text">提交成功</p>
+            </div>
+            <div class="container material-box" style="padding-bottom:20px;padding-top:20px">
+                <div class="one-half">
+                    <h4><b>@ViewBag.UserName  面试安排</b></h4>
+                    <input type="hidden" value="@ViewBag.UserId" id="user" />
+                    <input type="hidden" value="@ViewBag.UserNo" id="userNo" />
+                </div>
+            </div>
+            <div class="container material-box">
+                <div>
+                    <p  style=" margin-left:0%">
+                        <div class="formFieldWrap">
+                            <label class="field-title contactPhoneField textNameField" for="contactInterviewTimeField">面试时间:</label>
+                            <input type="datetime" name="InterviewTime" value="" class="contactField requiredField" id="contactInterviewTimeField" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactPhoneField textNameField" for="contactInterviewPlaceField">面试地点:</label>
+                            <input type="text" name="InterviewPlace" value="" class="contactField requiredField" id="contactInterviewPlaceField" />
+                        </div>
+                    </p>
+                </div>
+                <div class="formFieldWrap">
+                    <label class="field-title originNameField textNameField" for="UserRemarks">备注:</label>
+                    <textarea name="UserRemarks" class="contactField  requiredField" id="contactRemarksField" rows="6"></textarea>
+                </div>
+                <div class="decoration content"></div>
+                <div>
+                    <input class="buttonWrap button button-green contactSubmitButton" type="button" name="review-submit" id="review-submit" value="提交" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+
+        wx.error(function (res) {
+            console.log(res);
+        });
+
+
+        function Score(UserID, QuestionID, Score) {
+            this.UserID = UserID;
+            this.QuestionID = QuestionID;
+            this.Score = Score;
+        }
+
+        function Validate() {
+            if (!jQuery("#contactNameField").val()) {
+                alert('名字不能为空');
+                return false;
+            }
+            if (!jQuery("#contactPhoneField").val()) {
+                alert('电话不能为空');
+                return false;
+            }
+            if (!jQuery("#contactAgeField").val()) {
+                alert('年龄不能为空');
+                return false;
+            }
+            if (!jQuery('input[name="UserSex"]:checked').val()) {
+                {
+                    alert('请选择性别');
+                    return false;
+                }
+            }
+
+        }
+        jQuery("#date1Form").submit(function () {
+            return Validate();
+        });
+
+        var guid = function () {
+            var s = [];
+            var hexDigits = "0123456789abcdef";
+            for (var i = 0; i < 36; i++) {
+                s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+            }
+            s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+            s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+            s[8] = s[13] = s[18] = s[23] = "-";
+
+            var uuid = s.join("");
+            return uuid.split("-").join("");
+        }
+        var getQueryString = function (name) {
+            if (!name) {
+                return null;
+            }
+            var search = window.location.search;
+            var reg = new RegExp("[&?]" + name + "=([^&]+)");
+            if (reg.test(search)) {
+                return RegExp.$1;
+            }
+            return null;
+        }
+
+        jQuery(".static-notification-red").hide();
+        jQuery(".static-notification-green").hide();
+
+        jQuery(".radio-one").click(function (event) {
+            jQuery(event.target).siblings().removeClass("radio-one-checked");
+        })
+
+        jQuery("#review-submit").click(function () {
+            var isOk = true;
+            var scores = [];
+            jQuery(".choice").each(function (i) {
+                var radioChecked = jQuery(this).find(".radio-one-checked");
+                if (!radioChecked.length) {
+                    jQuery(".static-notification-red").find("p").text("第" + (i + 1) + "项没有评分").parent().show();
+                    setTimeout(function () {
+                        jQuery(".static-notification-red").fadeOut("slow");
+                    }, 3000);
+                    isOk = false;
+                    return false;
+                } else {
+                    var radio = radioChecked.first();
+                    var score = new Score();
+                    score.UserID = jQuery('#user').attr('value').toString().trim();
+                    score.QuestionID = jQuery(this).attr("data-seqnr");
+                    score.Score = radio.attr("data-value");
+                    scores.push(score);
+                }
+            });
+            if (isOk) {
+                var user = jQuery('#user').attr('value').toString().trim();
+                if (!user) {
+                    jQuery(".static-notification-red").find("p").text("请登录").parent().show();
+                    setTimeout(function () {
+                        jQuery(".static-notification-red").fadeOut("slow");
+                    }, 3000);
+                    return;
+                }
+                var postData = {
+                    UserID: user,
+                    scores: scores
+                };
+
+                jQuery("#review-submit").attr("value", "提交中...").attr("disabled", "disabled");
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/Recruitment/ResultInfo",
+                    timeout: 900000, //超时时间设置，单位毫秒
+                    contentType: "application/json",//这个一定要加上哟！
+                    dataType: "json",
+                    data: JSON.stringify(postData),
+                    success: function (data) {
+
+                        jQuery(".container").hide();
+                        jQuery(".static-notification-green").fadeIn("slow");
+                    },
+                    fail: function (data) {
+                        jQuery("#review-submit").attr("value", "提交").attr("disabled", "");
+                        jQuery(".static-notification-red").find("p").text("服务器错误").parent().show();
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+</html>

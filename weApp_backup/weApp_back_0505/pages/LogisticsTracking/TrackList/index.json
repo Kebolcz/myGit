@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "单据详情",
+    "backgroundColor":"#fff",
+    "navigationBarBackgroundColor":"#3783fb",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":"true"
+}

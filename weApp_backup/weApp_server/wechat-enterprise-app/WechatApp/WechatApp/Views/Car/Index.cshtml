@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@model List<WechatApp.Models.CarItemView>
+@if (ViewBag.IsCarList)
+{
+    <div class="container material-box" id="carList">
+        <p style="margin-bottom: 0;">可以查看车辆的基本信息、限行情况，当天的预定情况，选择合适的车辆</p>
+        <div class="content decoration"></div>
+        <div class="portfolio-one" id="carListItems">
+            @foreach (var carItem in Model)
+            {
+                <text>
+                <div class="portfolio-one-item full-bottom">
+                    <div class="portfolio-one-image">
+                        <a href="@carItem.Picture" class="swipebox" title="Caption Here">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <img src="@carItem.Picture" class="responsive-image">
+                    </div>
+                    <div class="portfolio-one-text">
+                        <h3 class="title">@carItem.Name</h3>
+                        <em class="subtitle">@carItem.Seat</em>
+                        <div class="portfolio-one-details">
+                            <a href="#">@carItem.Number</a>
+                            <a href="#">@(carItem.Limited ? "限行" : "不限行")</a>
+                            <a href="#">
+                                @if (carItem.Journey != null && carItem.Journey.Flag == true)
+                                {
+                                    @carItem.Journey.Content
+                                }
+                                else
+                                {
+                                    @("没有进行的行程")
+                                }
+                            </a>
+                        </div>
+                        <p class="half-bottom" style="margin-bottom: 0;">
+                            @if (carItem.Orders != null && carItem.Orders.Count > 0)
+                            {
+                                <ol class="number-list no-bottom">
+                                    @foreach (var order in carItem.Orders)
+                                    {
+                                        <li>@order.Content</li>
+                                    }
+                                </ol>
+                            }
+                            else
+                            {
+                                @("没有人预定")
+                            }
+                        </p>
+                        <div class="portfolio-one-links">
+                            <a href="@("book?carid=" + carItem.Id + "&date=" + ViewBag.SeletedDate + "&userid=" + ViewBag.UserId)"><i class="fa fa-arrow-right"></i>立即预定</a>
+                        </div>
+                    </div>
+                </div>
+                </text>
+            }
+        </div>
+    </div>
+}
+else {
+    <div class="container material-box" id="dateChooseContainer">
+        <div class="one-half-responsive">
+            <div class="container no-bottom">
+                <form action="/car/index" method="post" class="dateForm" id="dateForm">
+                    <fieldset>
+                        <div class="formValidationError" id="dateFieldError">
+                            <div class="static-notification-red tap-dismiss-notification">
+                                <p class="center-text uppercase">日期是必须的</p>
+                            </div>
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title dateNameField textNameField" for="dateField">日期:<span>(必选)</span></label>
+                            <input type="date" name="date" value="" class="dateField requiredField textField" id="dateField" />
+                        </div>
+                        <input type="hidden" name="userId" value="@ViewBag.UserId" />
+                        <div class="formSubmitButtonErrorsWrap">
+                            <input type="submit" class="buttonWrap button button-green dateSubmitButton" id="dateSubmitButton" value="查询" data-formid="dateForm" />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    var $ = jQuery;
+    $('#dateSubmitButton').click(function () {
+        if (!$('#dateField').val()) {
+            alert('日期不能为空');
+            return false;
+        }
+    });
+</script>
+

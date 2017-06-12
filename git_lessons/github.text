@@ -1,0 +1,135 @@
+/*
+*	http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+*	liaoxuefeng --> github
+*/
+
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+
+git init 
+git config --global user.name "kebolcz"
+git config --global user.email "07_master@sina.com"
+git commit --amend --reset-author
+
+git add <file>
+git commit -m "Initial a first commit!"
+git status
+git diff <file>                  //show difference between workspace and stage
+git log				
+git log --pretty=oneline
+git reset --hard HEAD^		//reset to the last version
+git reset --hard HEAD~100	//reset to the 100
+git reset --hard <SHA1>		//reset to a specific version
+git reflog			//show all history commandline that U input
+git diff HEAD -- ./readme.text	//show difference between HEAD and workspace
+git checkout -- ./readme.text    //make this file back to the lastest version of "git commit" or "git add"
+git reset HEAD -- ./readme.text  //reset changes from stage to workspace . Unstage. workspace still maintain the changes.
+git rm          		 //remove a file.
+
+
+
+//url:http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013752340242354807e192f02a44359908df8a5643103a000
+
+Create SSH
+	
+	ssh-keygen -t rsa -C "07_master@sina.com"   //url:root/.ssh
+
+Then add public key on github homepage Account SSH Key
+
+Then create a new repository.
+
+git remote add origin https://github.com/Kebolcz/git_lessons.git
+git push -u origin master
+
+Then the next time u want to push local repo,use    git push origin master
+
+Branch -------------------------------------------------------------------------->
+	git checkout -b dev    
+equals   
+	git branch dev        git checkout dev
+
+
+git branch   //show branchs
+
+git merge dev //merge branch"dev" to this branch
+
+git branch -d dev  	//delete branch dev
+
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+confix branch------------------------------------------------------------------>
+
+git checkout -b feature    //create a new branch is simple & quick.
+
+git log --graph --pretty=oneline --abbrev-commit
+
+merge branch------------------------------------------------------------------->
+git merge --no-ff -m "merge with --no-ff" dev  (HEAD->master)
+
+Stash-------------------------------------------------------------------------->
+
+git stash            //把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+
+git status          //用git status查看工作区，就是干净的
+
+...................after do something ,you back...........
+
+git stash list 
+
+git stash apply     git stash drop
+
+git stash pop stash@{0}
+
+
+git checkout -b dev origin/dev     //必须创建远程origin的dev分支到本地
+
+//最新提交和你试图推送的提交有冲突,先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送
+/****************************liaoxuefeng   多人协作********************************************************/
+//如果是新项目一定要记得使用下面这个命令，进行本地项目和远程项目的关联
+git remote add origin https://github.com/Kebolcz/spiders.git
+
+git remote -v       //check remote repository
+git pull            //download changes form <remote>,and directly merge/integrate into HEAD
+git branch --set-upstream dev origin/dev
+
+因此，多人协作的工作模式通常是这样：
+
+    首先，可以试图用git push origin branch-name推送自己的修改；
+
+    如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+
+    如果合并有冲突，则解决冲突，并在本地提交；
+
+    没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，
+用命令git branch --set-upstream branch-name origin/branch-name。
+
+
+Tag--------------------------------------------------------------------------------------------------->
+git tag     //show tag list
+git tag <tagname>     //show information about tag
+
+git tag <tagname>     //if tagName is not exist,then create a tag on current commit
+git tag <tagname> <SHA1>                //tag a commit
+
+
+
+    命令git push origin <tagname>可以推送一个本地标签；
+
+    命令git push origin --tags可以推送全部未推送过的本地标签；
+
+    命令git tag -d <tagname>可以删除一个本地标签；
+
+    命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+

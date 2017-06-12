@@ -1,0 +1,34 @@
+<view stytle=" overflow-x: hidden; overflow-y: auto;" class="page">
+  <view class="page__hd">
+  </view>
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tip}}</view>
+    <view class="swiper">
+      <image src="/images/logo.png" class="image" />
+    </view>
+    <view class="center">
+      <text class="title">卡斯柯小程序应用平台</text>
+    </view>
+    <view class="item">
+      <form bindsubmit="btnLogo">
+        <view class="center">
+          <view class="section">
+            <input type="text" placeholder="请输入工号" class="text" name="userNo" />
+          </view>
+          <view class="section">
+            <input type="password" placeholder="请输入域密码" class="text" name="userPass" />
+          </view>
+          <view class="section2">
+            <button formType="submit" type="primary" class="Logo" style="background-color: #3783fb;"> 登录 </button>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+  <view class="weui-footer">
+    <view class="weui-footer__links">
+      <navigator url="" class="weui-footer__link">卡斯柯</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright © 信息化开发小组</view>
+  </view>
+</view>

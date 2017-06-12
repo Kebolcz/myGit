@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dahanis.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.dahanis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">卡斯柯移动审批接口</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dahanis.com/">
+      <s:element name="LoginPlatform">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="argUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argServiceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argSign" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="argAPKLogin" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginPlatformResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginPlatformResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserADInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserADInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserADInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMobileWorklistCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="argUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argServiceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argSign" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="argUseAPK" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMobileWorklistCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMobileWorklistCountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUserDevicetoken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="argLoginUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argDevicetoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argRemarks" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="argIsDelete" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUserDevicetokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveUserDevicetokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAndroidClientVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAndroidClientVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAndroidClientVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkListCountV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="argUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argServiceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argSign" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="argUseAPK" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkListCountV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkListCountV2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUserDevicetokenV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="argLoginUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argDevicetoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="argRemarks" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="argIsDelete" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUserDevicetokenV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveUserDevicetokenV2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginPlatformSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginPlatform" />
+  </wsdl:message>
+  <wsdl:message name="LoginPlatformSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginPlatformResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserADInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserADInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserADInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserADInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMobileWorklistCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMobileWorklistCount" />
+  </wsdl:message>
+  <wsdl:message name="GetMobileWorklistCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMobileWorklistCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserDevicetokenSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveUserDevicetoken" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserDevicetokenSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveUserDevicetokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAndroidClientVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAndroidClientVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetAndroidClientVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAndroidClientVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkListCountV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkListCountV2" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkListCountV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkListCountV2Response" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserDevicetokenV2SoapIn">
+    <wsdl:part name="parameters" element="tns:SaveUserDevicetokenV2" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserDevicetokenV2SoapOut">
+    <wsdl:part name="parameters" element="tns:SaveUserDevicetokenV2Response" />
+  </wsdl:message>
+  <wsdl:portType name="MobileWFWebServiceSoap">
+    <wsdl:operation name="LoginPlatform">
+      <wsdl:input message="tns:LoginPlatformSoapIn" />
+      <wsdl:output message="tns:LoginPlatformSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserADInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">@</wsdl:documentation>
+      <wsdl:input message="tns:GetUserADInfoSoapIn" />
+      <wsdl:output message="tns:GetUserADInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMobileWorklistCount">
+      <wsdl:input message="tns:GetMobileWorklistCountSoapIn" />
+      <wsdl:output message="tns:GetMobileWorklistCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetoken">
+      <wsdl:input message="tns:SaveUserDevicetokenSoapIn" />
+      <wsdl:output message="tns:SaveUserDevicetokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAndroidClientVersion">
+      <wsdl:input message="tns:GetAndroidClientVersionSoapIn" />
+      <wsdl:output message="tns:GetAndroidClientVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkListCountV2">
+      <wsdl:input message="tns:GetWorkListCountV2SoapIn" />
+      <wsdl:output message="tns:GetWorkListCountV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetokenV2">
+      <wsdl:input message="tns:SaveUserDevicetokenV2SoapIn" />
+      <wsdl:output message="tns:SaveUserDevicetokenV2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MobileWFWebServiceSoap" type="tns:MobileWFWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginPlatform">
+      <soap:operation soapAction="http://www.dahanis.com/LoginPlatform" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserADInfo">
+      <soap:operation soapAction="http://www.dahanis.com/GetUserADInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMobileWorklistCount">
+      <soap:operation soapAction="http://www.dahanis.com/GetMobileWorklistCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetoken">
+      <soap:operation soapAction="http://www.dahanis.com/SaveUserDevicetoken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAndroidClientVersion">
+      <soap:operation soapAction="http://www.dahanis.com/GetAndroidClientVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkListCountV2">
+      <soap:operation soapAction="http://www.dahanis.com/GetWorkListCountV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetokenV2">
+      <soap:operation soapAction="http://www.dahanis.com/SaveUserDevicetokenV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileWFWebServiceSoap12" type="tns:MobileWFWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginPlatform">
+      <soap12:operation soapAction="http://www.dahanis.com/LoginPlatform" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserADInfo">
+      <soap12:operation soapAction="http://www.dahanis.com/GetUserADInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMobileWorklistCount">
+      <soap12:operation soapAction="http://www.dahanis.com/GetMobileWorklistCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetoken">
+      <soap12:operation soapAction="http://www.dahanis.com/SaveUserDevicetoken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAndroidClientVersion">
+      <soap12:operation soapAction="http://www.dahanis.com/GetAndroidClientVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkListCountV2">
+      <soap12:operation soapAction="http://www.dahanis.com/GetWorkListCountV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserDevicetokenV2">
+      <soap12:operation soapAction="http://www.dahanis.com/SaveUserDevicetokenV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MobileWFWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">卡斯柯移动审批接口</wsdl:documentation>
+    <wsdl:port name="MobileWFWebServiceSoap" binding="tns:MobileWFWebServiceSoap">
+      <soap:address location="http://192.100.99.68:9004/MWFWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileWFWebServiceSoap12" binding="tns:MobileWFWebServiceSoap12">
+      <soap12:address location="http://192.100.99.68:9004/MWFWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

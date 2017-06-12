@@ -1,0 +1,362 @@
+2015-09-24 09:40:30,251 [8] ERROR WechatApp.Controllers.AnnouncementController [(null)] <(null)>
+ - System.Exception: test
+2015-09-24 14:14:15,719 [12] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://57698/training/index
+2015-09-24 14:15:42,009 [12] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://57698/training/index
+2015-09-24 14:21:44,015 [6] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost57698/training/index
+2015-09-24 14:22:33,383 [10] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost57698/training/index?aaoid=12345
+2015-09-24 15:36:40,305 [12] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-24 15:40:02,331 [8] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-24 15:50:56,704 [5] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-24 15:52:08,644 [12] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-24 15:56:12,295 [26] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-24 15:57:04,448 [25] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-09-29 11:04:30,765 [11] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training?ssoid=61322
+2015-09-29 11:16:09,062 [22] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training?ssoid=61322
+2015-09-29 14:00:28,334 [19] ERROR WechatApp.Controllers.CarController [(null)] <(null)>
+ - System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 Easy4net.EntityManager.EntityManagerImpl.Save[T](T entity)
+   在 Easy4net.DBUtility.DBHelper.Save[T](T entity)
+   在 WechatApp.Controllers.CarController.Book(Order order) 位置 c:\D\wechat\wechat-enterprise-app\WechatApp\WechatApp\Controllers\CarController.cs:行号 157
+ClientConnectionId:ad51b0a8-f76f-4c5f-80c3-04892929ab57
+2015-09-29 14:02:47,839 [19] ERROR WechatApp.Controllers.CarController [(null)] <(null)>
+ - System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 Easy4net.EntityManager.EntityManagerImpl.Save[T](T entity)
+   在 Easy4net.DBUtility.DBHelper.Save[T](T entity)
+   在 WechatApp.Controllers.CarController.Book(Order order) 位置 c:\D\wechat\wechat-enterprise-app\WechatApp\WechatApp\Controllers\CarController.cs:行号 157
+ClientConnectionId:ad51b0a8-f76f-4c5f-80c3-04892929ab57
+2015-09-29 14:22:42,142 [8] ERROR WechatApp.Controllers.CarController [(null)] <(null)>
+ - System.Exception
+2015-10-12 14:36:21,263 [9] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-10-12 14:36:27,793 [10] INFO  WechatApp.Controllers.TrainingController [(null)] <(null)>
+ - http://localhost:57698/training/index?ssoid=12345
+2015-10-12 14:59:30,121 [11] ERROR WechatApp.Controllers.CarController [(null)] <(null)>
+ - System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 Easy4net.EntityManager.EntityManagerImpl.Save[T](T entity)
+   在 Easy4net.DBUtility.DBHelper.Save[T](T entity)
+   在 WechatApp.Controllers.CarController.Book(Order order) 位置 c:\D\wechat\wechat-enterprise-app\WechatApp\WechatApp\Controllers\CarController.cs:行号 164
+ClientConnectionId:ca2bc1a4-7a17-486c-a4db-c56e472c5e5f
+2015-12-04 13:05:11,225 [5] ERROR WechatApp.Controllers.CarController [(null)] <(null)>
+ - System.Data.SqlClient.SqlException (0x80131904): 用户 'sa' 登录失败。
+   在 Easy4net.EntityManager.EntityManagerImpl.FindAll[T]()
+   在 Easy4net.DBUtility.DBHelper.FindAll[T]()
+   在 WechatApp.Controllers.CarController.Index(String date, String userId) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\CarController.cs:行号 34
+ClientConnectionId:72816887-1a0a-4f20-be03-6695266a547d
+2015-12-07 16:35:25,386 [44] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.ResultInfo(TrainningAssessmentResult trainningAssessmentResult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 85
+2015-12-09 16:04:44,102 [7] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-09 16:11:51,993 [19] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-09 16:14:23,925 [22] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-09 16:15:51,285 [25] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-09 16:18:14,767 [9] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-09 16:19:22,009 [7] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 107
+2015-12-10 15:52:17,621 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-10 16:14:53,545 [5] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 Easy4net.EntityManager.EntityManagerImpl.Save[T](T entity)
+   在 Easy4net.DBUtility.DBHelper.Save[T](T entity)
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 125
+2015-12-10 16:16:10,936 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-10 17:54:25,143 [11] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WechatApp.Controllers.RecruitmentController.GetContent(UserInfo info, InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 177
+   在 WechatApp.Controllers.RecruitmentController.Interview(InterviewArrangementList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat打包\wechat打包\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 134
+2015-12-10 18:06:21,247 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-11 13:25:44,158 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-16 10:09:46,762 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-16 12:57:25,176 [14] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-16 13:00:02,377 [15] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-16 13:03:06,780 [14] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 10:02:08,866 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 10:17:48,760 [13] ERROR WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - System.Net.WebException: 未能解析此远程名称: 'qyapi.weixin.qq.com'
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 Senparc.Weixin.HttpUtility.RequestUtility.HttpPost(String url, CookieContainer cookieContainer, Stream postStream, Dictionary`2 fileDictionary, String refererUrl, Encoding encoding, Int32 timeOut)
+   在 Senparc.Weixin.HttpUtility.Post.PostGetJson[T](String url, CookieContainer cookieContainer, Stream fileStream, Encoding encoding, Int32 timeOut)
+   在 Senparc.Weixin.QY.CommonAPIs.CommonJsonSend.Send[T](String accessToken, String urlFormat, Object data, CommonJsonSendType sendType, Int32 timeOut)
+   在 Senparc.Weixin.QY.AdvancedAPIs.Mass.MassApi.SendNews(String accessToken, String toUser, String toParty, String toTag, String agentId, List`1 articles, Int32 safe, Int32 timeOut)
+   在 WechatApp.Tools.NotifyUtilityQY.SendTplMessage(String toUser, String toParty, String toTag, String agentId, List`1 data) 位置 e:\方案以及操作手册\庄重交接资料\wechat-enterprise-app\WechatApp\WechatApp\Tools\NotifyUtilityQY.cs:行号 29
+   在 WechatApp.Controllers.RecruitmentController.ResultInfo(ZPResultList zpresult) 位置 e:\方案以及操作手册\庄重交接资料\wechat-enterprise-app\WechatApp\WechatApp\Controllers\RecruitmentController.cs:行号 358
+2015-12-24 10:19:40,511 [16] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 12:38:15,346 [47] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 13:15:00,296 [48] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 15:52:09,390 [37] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 15:56:47,038 [47] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 15:58:45,560 [34] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 16:21:07,288 [20] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 16:23:02,420 [22] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 16:29:17,183 [18] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 23:52:36,006 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 23:53:52,149 [8] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 23:54:58,033 [16] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-24 23:55:58,902 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:05:33,039 [17] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:06:37,148 [18] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:08:12,518 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:13:21,118 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:15:06,370 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:16:13,431 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:17:03,367 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 13:18:09,074 [17] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 15:56:25,994 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:02:12,331 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:04:16,199 [13] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:06:12,255 [24] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:07:56,544 [25] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:08:33,405 [21] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 16:09:17,236 [25] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:03:52,653 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:06:18,488 [14] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:06:54,082 [22] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:07:22,504 [19] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:07:57,890 [19] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:08:16,994 [24] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:09:36,424 [27] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-29 18:10:20,980 [30] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-30 18:13:36,381 [25] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-31 11:43:49,177 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2015-12-31 11:44:06,370 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - 发送成功
+2016-03-15 11:46:06,008 [15] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/index
+2016-03-15 11:46:08,200 [12] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2016-03-15 11:46:07,260 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/index
+2016-03-15 16:14:32,587 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2016-03-15 16:20:28,410 [7] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2016-03-28 09:48:45,031 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2016-03-28 11:11:43,605 [14] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Interview?userId=88&ssoid=61106&type=1
+2016-03-28 11:11:49,430 [15] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/LoadInterview
+2016-03-28 11:26:53,196 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Interview?userId=88&ssoid=61106&type=1
+2016-03-28 11:26:56,225 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/LoadInterview
+2016-03-28 14:29:37,972 [19] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=88&ssoid=61106
+2016-03-28 14:30:28,160 [19] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=88&ssoid=61106
+2016-03-28 14:30:53,843 [27] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=88&ssoid=61106
+2016-03-29 09:38:41,101 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 09:39:17,798 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 09:39:45,405 [6] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 09:46:11,487 [7] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 09:47:41,632 [14] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 09:48:46,918 [18] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=90&ssoid=61106
+2016-03-29 09:49:01,857 [18] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=92&ssoid=61106
+2016-03-29 09:51:53,739 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 10:34:03,023 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=51&ssoid=61106
+2016-03-29 10:34:49,795 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/Result?userId=91&ssoid=61106
+2016-03-29 11:20:30,217 [9] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/index
+2016-04-05 17:21:59,716 [15] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2016-04-05 17:21:59,716 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/index
+2016-04-12 11:39:10,022 [11] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/index
+2016-05-18 09:31:49,313 [7] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/detail?userId=173
+2017-03-03 13:26:30,665 [10] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2017-03-03 13:38:35,139 [8] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2017-03-03 13:38:35,143 [7] INFO  WechatApp.Controllers.RecruitmentController [(null)] <(null)>
+ - http://localhost:5567/Recruitment/
+2017-03-03 18:05:50,053 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:07:25,187 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:07:45,346 [12] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:08:27,997 [14] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:09:29,731 [18] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:11:58,543 [18] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:17:22,402 [23] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:19:45,146 [23] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:20:24,947 [22] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:24:04,729 [23] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:47:00,981 [8] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:47:00,981 [5] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 18:47:02,190 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 20:29:01,802 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 20:31:56,149 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 20:36:43,240 [24] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 20:40:21,537 [9] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 20:48:27,143 [13] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 21:19:08,719 [9] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 21:30:00,517 [52] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-03 21:38:48,636 [70] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 09:15:13,526 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 09:37:36,861 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 10:16:26,766 [8] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 10:16:26,766 [5] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 14:46:46,139 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 14:48:02,029 [12] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 14:50:07,984 [12] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-06 18:53:46,308 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-07 11:05:42,554 [11] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-07 11:07:48,696 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-07 18:34:38,683 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:26:27,335 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:28:59,938 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:32:21,658 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:32:21,658 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:36:20,120 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 08:38:05,176 [8] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 10:35:21,663 [11] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 10:46:41,369 [5] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 11:00:32,277 [8] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 11:00:32,285 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 13:08:55,166 [8] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-08 13:10:07,748 [13] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 12:38:17,344 [11] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 12:40:03,104 [11] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 12:48:04,066 [5] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 13:11:15,603 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 13:14:16,689 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 13:34:43,733 [16] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 13:38:52,695 [7] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 13:49:31,393 [31] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 17:33:20,833 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
+2017-03-09 17:55:20,372 [6] INFO  WechatApp.Controllers.TaxCheckController [(null)] <(null)>
+ - http://localhost:5567/TaxCheck
