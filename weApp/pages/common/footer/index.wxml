@@ -1,0 +1,29 @@
+<template name="tab-bar">
+  <view class="tab-bar uf uf-ac">
+    <view class="tab-item uf uf-f1 uf-ac uf-hc"
+        wx:for="{{ dataForTabbar }}"
+        wx:for-item="tabItem"
+        wx:for-index="index1"
+        wx:key="sTitle" bindtap="onTabItemTap" 
+        data-clickIndex="{{ index1 }}" style="display:flex">
+      <template is="tab-item" data="{{ tabItem }}"></template>
+    </view>
+  </view>
+</template>
+<template name="tab-item">
+<!--绑定一个onTabItemTap方法-->
+  <view class="tab-content"  data-key="{{ tabItem.sTitle }}" >
+    <!--tabBar图标-->
+    <view class="tab-icon">
+        <image src="{{ tabItem.sIconUrl }}"></image>
+    </view>
+    <!--tabBar标题-->
+    <view class="tab-title">
+      <text style="color:{{textColor[tabItem.checked]}}">{{ tabItem.sTitle }}</text>
+    </view>
+    <!--未读信息气泡-->
+    <view class="tab-bubble" wx:if="{{ tabItem.iCount > 0}}">
+        <text class="tab-count">{{ tabItem.iCount < 100? tabItem.iCount: 99+"+" }}</text>
+    </view>
+  </view>
+</template>

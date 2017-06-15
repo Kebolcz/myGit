@@ -1,0 +1,168 @@
+.level3 {
+    font-size:28rpx;
+    background:#F7F7F7;
+    display:inline-block;
+    margin-left:32rpx;
+    padding:4rpx 12rpx;
+    border-radius:8rpx;
+    color:#808080;
+}
+.wrapCheck {
+    margin:12rpx 0 0 24rpx;
+}
+.wrapCheck~view {
+    color:#000;
+    font-weight:700;
+    font-size:30rpx;
+}
+.weui-agree__checkbox-icon {
+    top: 12rpx;
+    width: 28rpx;
+    height: 28rpx;
+}
+.weui-agree__checkbox-icon-check {
+    top: 6rpx;
+    left: 4rpx;
+}
+.successCheck {
+    background: #ccc !important;
+}
+.weui-cells::before {
+    border-top:0;
+}
+.weui-cell::before {
+    left: 86rpx;
+}
+.detail::after {
+    border-bottom: 0;
+}
+.detail {
+    font-family:"Microsoft YaHei";
+    font-size:32rpx;
+}
+.detail .weui-cell {
+    padding-left: 0;
+}
+.detail image {
+    width: 48rpx;
+    height: 48rpx;
+}
+.detail .weui-cell__hd{
+    display:flex;
+    margin:0 18rpx;
+}
+.detail .weui-cell__bd{
+    display:flex;
+    margin:0 2rpx;
+}
+.time-panel picker{
+    margin-right: 16rpx;
+}
+.remark {
+    font-family:"Microsoft YaHei";
+    width:100%;
+}
+.teamMember {
+    margin-left:86rpx;
+    display:flex;
+    padding-bottom:16rpx;
+}
+.teamMember text {
+    margin-right:16rpx;
+    font-size:24rpx;
+    background:#F29E80;
+    border-radius:50%;
+    color:#fff;
+    line-height:56rpx;
+    width:56rpx;
+    text-align:center;
+    transform:scale(0.8);
+}
+.teamMember image {
+    width: 56rpx;
+    height: 56rpx;
+}
+.gear-animate {
+    animation: gear-spin infinite 20s linear;
+}
+@keyframes gear-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.missionList {
+    margin-left: 86rpx;
+}
+.missionList .weui-cell__hd {
+    display:flex;
+    margin:0 18rpx 0 0;
+}
+.missionList>.weui-cell {
+    padding: 12rpx 0;
+}
+.missionList>.weui-cell view {
+    font-size: 26rpx;
+}
+.missionList>.weui-cell image {
+    width: 42rpx;
+    height: 42rpx;
+}
+.missionList>.weui-cell::before{
+    left: 62rpx;
+}
+.level4 {
+    padding-bottom: 8rpx;
+}
+
+.addInput input{
+    background:#fff;
+    border:2rpx solid #E4E4E4;
+    border-radius:10rpx;
+    height:44rpx;
+    line-height:44rpx;
+    text-indent:12rpx;
+    font-size:26rpx;
+    width: 420rpx;
+}
+.btn-group {
+    text-align:right;
+    padding:12rpx 12rpx 0;
+}
+.btn-group button:not(:last-child){
+    color:#ccc;
+}
+.btn-group button:last-child{
+    margin-left: 12rpx;
+    background:#3DA8F5;
+    color:#fff;
+}
+
+.level5 {
+    display: flex;
+    margin-left: 60rpx;
+    margin-bottom:12rpx;
+}
+.level5 .weui-cell {
+    padding: 0;
+}
+.level5 image {
+    width: 42rpx;
+    height: 42rpx;
+}
+
+.level6 {
+    display: flex;
+    margin-left: 120rpx;
+    margin-bottom:12rpx;
+}
+.level6 .weui-cell {
+    padding: 0;
+}
+.level6 image {
+    width: 42rpx;
+    height: 42rpx;
+}
+.subMsn::before {
+    border-top: 0;
+}
+
+@import "../popup/index.wxss";

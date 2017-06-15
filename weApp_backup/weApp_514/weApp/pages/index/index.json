@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "卡斯柯小程序",
-    "backgroundColor":"#fff",
-    "navigationBarBackgroundColor":"#3783fb",
-    "navigationBarTextStyle":"white",
-    "enablePullDownRefresh":"true"
-}

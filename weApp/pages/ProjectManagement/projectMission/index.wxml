@@ -1,0 +1,121 @@
+<import src="../popup/index.wxml"/>
+
+<view class="page">
+    <view class="page__hd">
+        <view class="level3">{{perojectInfo[lev2].children[lev3].TASK_NAME}}</view>
+    </view>
+    <view class="page__bd">
+        <view class="uf">
+            <view class="wrapCheck">
+                <checkbox class="weui-agree__checkbox" value="agree" checked="{{item1.TASK_IS_SUMMARY!='False'?true:false}}" />
+                <view class="weui-agree__checkbox-icon {{item1.TASK_IS_SUMMARY!='False'?'successCheck':''}}" >
+                    <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{item1.TASK_IS_SUMMARY!='False'?true:false}}"></icon>
+                </view>
+            </view>
+            <view class="weui-cells__title" style="margin-bottom:24rpx;">{{perojectInfo[lev2].children[lev3].TASK_WBS}}</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title detail" style="position: static">
+            <view>
+                <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                        <image src="/images/project/teamwork.png"></image>
+                    </view>
+                    <view class="weui-cell__bd">参与者 · {{members.length}}</view>
+                </view>
+                <view class="teamMember">
+                    <block wx:for="{{members}}" wx:key="*this" wx:for-index="idx">
+                        <text>{{item}}</text>
+                    </block>
+                    <image src="/images/project/addMember.png" bindtap="addMember"></image>
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/start.png"></image>
+                </view>
+                <view class="weui-cell__bd time-panel">
+                    <picker class="weui-btn" mode="date" value="{{date}}" bindchange="bindDateChange">{{date}}</picker>
+                    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">{{time}}</picker> 开始
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/deadline.png"></image>
+                </view>
+                <view class="weui-cell__bd time-panel">
+                    <picker class="weui-btn" mode="date" value="{{date_end}}" bindchange="bindDateChange_end">{{date_end}}</picker>
+                    <picker mode="time" value="{{time_end}}" bindchange="bindTimeChange_end">{{time_end}}</picker> 截止
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{index=='0'?'/images/project/priority.png': index=='1'?'/images/project/priority1.png':'/images/project/priority2.png'}}"></image>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindPickerChange" style="width:100%;" value="{{index}}" range="{{array}}">
+                        {{array[index]}}
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/remark.png"></image>
+                </view>
+                <view class="weui-cell__bd"><input class="remark" type="text" placeholder="添加备注" /></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/addMission.png"></image>
+                </view>
+                <view class="weui-cell__bd"><input class="remark" type="text" placeholder="添加子任务" /></view>
+            </view>
+
+            <button style="width:100%;margin:0 auto;transform:scale(0.8);" type="primary" bindtap="saveDetail">保存</button>
+
+            <view class="weui-cell subMsn" hidden="{{perojectInfo[lev2].children[lev3].children?false:true}}">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/gearb.png" class="gear-animate"></image>
+                </view>
+                <view class="weui-cell__bd">子任务</view>
+            </view>
+
+            <view class="missionList level4" hidden="{{perojectInfo[lev2].children[lev3].children?false:true}}">
+                <block wx:for="{{perojectInfo[lev2].children[lev3].children}}" wx:key="*this" wx:for-index="idx">
+                    <view class="weui-cell" bindtap="showPopup" data-levIV="{{idx}}" data-levV="" data-levVI="">
+                        <view class="weui-cell__hd">
+                            <image src="/images/project/geary.png" class="{{!item.children?'':'gear-animate'}}"></image>
+                        </view>
+                        <view class="weui-cell__bd">{{item.TASK_NAME}}</view>
+                    </view>
+
+
+                    <block wx:for="{{item.children}}" wx:key="*this" wx:for-item="item4" wx:for-index="idx4">
+                        <view class="level5" bindtap="showPopup" data-levIV="{{idx}}" data-levV="{{idx4}}" data-levVI="">
+                            <view class="weui-cell">
+                                <view class="weui-cell__hd">
+                                    <image src="/images/project/geare.png" class="{{!item4.children?'':'gear-animate'}}"></image>
+                                </view>
+                            </view>
+                            <view class="weui-cell__bd" style="font-size:26rpx;">{{item4.TASK_NAME}}</view>
+                        </view>
+
+                        <block wx:for="{{item4.children}}" wx:key="*this" wx:for-item="item5" wx:for-index="idx5">
+                            <view class="level6" bindtap="showPopup" data-levIV="{{idx}}" data-levV="{{idx4}}" data-levVI="{{idx5}}">
+                                <view class="weui-cell">
+                                    <view class="weui-cell__hd">
+                                        <image src="/images/project/gearg.png" class="{{!item5.children?'':'gear-animate'}}"></image>
+                                    </view>
+                                </view>
+                                <view class="weui-cell__bd" style="font-size:26rpx;">{{item5.TASK_NAME}}</view>
+                            </view>
+                        </block>
+                    </block>
+
+                </block>
+            </view>
+
+            <template is="popup" data="{{popData}}"/>
+
+        </view>
+    </view>
+</view>

@@ -1,0 +1,83 @@
+<template name="popup">
+
+<view class="page popup {{popData.showPop?'popup_animate':''}}">
+  <view class="page__hd">
+      <view class="level3">{{popData.detail.TASK_NAME}}</view>
+  </view>
+  <view class="page__bd">
+    <view class="uf">
+        <view class="wrapCheck">
+            <checkbox class="weui-agree__checkbox" value="agree" checked="{{popData.detail.TASK_IS_SUMMARY!='False'?true:false}}" />
+            <view class="weui-agree__checkbox-icon {{popData.detail.TASK_IS_SUMMARY!='False'?'successCheck':''}}" >
+                <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{popData.detail.TASK_IS_SUMMARY!='False'?true:false}}"></icon>
+            </view>
+        </view>
+        <view class="weui-cells__title" style="margin-bottom:24rpx;">{{popData.detail.TASK_WBS}}</view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title detail">
+        <view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="/images/project/teamwork.png"></image>
+                </view>
+                <view class="weui-cell__bd">参与者 · {{popData.members.length}}</view>
+            </view>
+            <view class="teamMember">
+                <block wx:for="{{popData.members}}" wx:key="*this" wx:for-index="idx">
+                    <text>{{item}}</text>
+                </block>
+                <image src="/images/project/addMember.png" bindtap="addMember_pop"></image>
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__hd">
+                <image src="/images/project/start.png"></image>
+            </view>
+            <view class="weui-cell__bd time-panel">
+                <picker class="weui-btn" mode="date" value="{{popData.date}}" bindchange="bindDateChange_pop">{{popData.date}}</picker>
+                <picker mode="time" value="{{popData.time}}" bindchange="bindTimeChange_pop">{{popData.time}}</picker> 开始
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__hd">
+                <image src="/images/project/deadline.png"></image>
+            </view>
+            <view class="weui-cell__bd time-panel">
+                <picker class="weui-btn" mode="date" value="{{popData.date_end}}" bindchange="bindDateChange_end_pop">{{popData.date_end}}</picker>
+                <picker mode="time" value="{{popData.time_end}}" bindchange="bindTimeChange_end_pop">{{popData.time_end}}</picker> 截止
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__hd">
+                <image src="{{popData.index=='0'?'/images/project/priority.png': popData.index=='1'?'/images/project/priority1.png':'/images/project/priority2.png'}}"></image>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="bindPickerChange_pop" style="width:100%;" value="{{popData.index}}" range="{{popData.array}}">
+                    {{popData.array[popData.index]}}
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__hd">
+                <image src="/images/project/remark.png"></image>
+            </view>
+            <view class="weui-cell__bd"><input class="remark" type="text" placeholder="添加备注" /></view>
+        </view>
+
+        <view class="weui-cell">
+            <view class="weui-cell__hd">
+                <image src="/images/project/addMission.png"></image>
+            </view>
+            <view class="weui-cell__bd"><input class="remark" type="text" placeholder="添加子任务" /></view>
+        </view>
+
+        <view class="uf uf-he" style="padding: 0 32rpx; ">
+            <button class="saveBtn" type="primary" bindtap="saveDetail_pop">保存</button>
+            <button class="saveBtn" type="warn" bindtap="close_pop">关闭pop</button>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</template>

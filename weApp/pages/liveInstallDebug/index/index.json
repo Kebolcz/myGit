@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "现场安装调试",
+    "backgroundColor":"#fff",
+    "navigationBarBackgroundColor":"#3783fb",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":true
+}

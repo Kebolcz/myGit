@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "物流信息",
-    "backgroundColor":"#fff",
-    "navigationBarBackgroundColor":"#3783fb",
-    "navigationBarTextStyle":"white",
-    "enablePullDownRefresh":"true"
-}

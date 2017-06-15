@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "消息",
-    "backgroundColor":"#fff",
-    "navigationBarBackgroundColor":"#3783fb",
-    "navigationBarTextStyle":"white",
-    "enablePullDownRefresh":"true"
-}

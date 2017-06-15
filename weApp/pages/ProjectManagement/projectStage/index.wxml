@@ -1,0 +1,86 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab uf uf-ver">
+      <view class="weui-tab__panel wrap_panel uf-f1" style="height:94%;">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+          <view class="weui-tab uf uf-ver">
+            <view class="swiper-tab uf uf-he">
+              <block wx:for="{{stageList}}" wx:key="TASK_ID" wx:for-index="idx">
+                <view class="swiper-tab-list uf-f1 {{currentTab==idx ? 'on' : ''}}" data-current="{{idx}}" bindtap="swichNav"></view>
+              </block>
+            </view>
+            <swiper current="{{currentTab}}" class="swiper-box uf-f1" duration="300" style="height:94%" bindchange="bindChange">
+              <block wx:for="{{stageList}}" wx:key="TASK_ID" wx:for-index="idx">
+                <swiper-item style="height:100%;">
+                  <view class="weui-panel weui-panel_access uf uf-ver item-view">
+                    <view class="weui-panel__hd item-view-title">{{item.TASK_NAME}}
+                      <view class="weui-badge" style="position:absolute;right:32rpx;">{{item.children?item.children.length:'0'}}</view>
+                    </view>
+                    <view class="weui-panel__bd uf-f1 item-view-ul" style="overflow:auto;">
+                      <block wx:for="{{item.children}}" wx:key="TASK_ID" wx:for-item="item1" wx:for-index="idx1">
+                        <navigator url="../projectMission/index?PROJ_UID={{PROJ_UID}}&l2={{idx}}&l3={{idx1}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                          <view class="wrapCheck">
+                            <checkbox class="weui-agree__checkbox" value="agree" checked="{{item1.TASK_IS_SUMMARY!='False'?true:false}}" />
+                            <view class="weui-agree__checkbox-icon {{item1.TASK_IS_SUMMARY!='False'?'successCheck':''}}">
+                              <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{item1.TASK_IS_SUMMARY!='False'?true:false}}"></icon>
+                            </view>
+                          </view>
+                          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title mission-tilte">{{item1.TASK_NAME}}</view>
+                            <view class="weui-media-box__desc task-property">
+                              <text>{{item1.start_data}} 开始</text>
+                              <text>{{item1.end_data}} 截止</text>
+                              <view class="childCountPanel" hidden="{{item1.children?false:true}}">
+                                <image class="panelCount" src="../../../images/record.png" />0/{{item1.children.length}}
+                              </view>
+                            </view>
+                          </view>
+                        </navigator>
+                      </block>
+                    </view>
+                    <view class="weui-panel__ft">
+                      <view class="weui-cell weui-cell_access weui-cell_link item-view-footer" hidden="{{!addBtnShow}}">
+                        <view class="weui-cell__bd" bindtap="handleClick_add">添加任务</view>
+                      </view>
+                      <view class="uf uf-ver" hidden="{{addBtnShow}}">
+                        <view class="weui-cell_input addInput">
+                          <input type="text" />
+                        </view>
+                        <view class="button-sp-area btn-group">
+                          <button class="mini-btn" type="default" size="mini" bindtap="cancelAdd">取消</button>
+                          <button class="mini-btn" type="secondary" size="mini" bindtap="confirmAdd">添加</button>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}" style="text-align:left;">
+          <view class="weui-cells__title item2-view-title">项目阶段</view>
+          <view class="weui-cells weui-cells_after-title item2-view-content">
+            <block wx:for="{{stageList}}" wx:key="TASK_ID" wx:for-index="idx">
+              <view bindtap="switchStage" data-key="{{idx+1}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                  <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;"></image>
+                </view>
+                <view class="weui-cell__bd">{{item.TASK_NAME}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="weui-navbar wrap_navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="width: {{sliderWidth}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+    </view>
+  </view>
+</view>

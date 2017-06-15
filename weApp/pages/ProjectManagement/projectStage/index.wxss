@@ -1,0 +1,186 @@
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    text-align: center;
+    height:100%;
+}
+.wrap_panel {
+    padding-top: 0;
+}
+.wrap_navbar {
+    position: relative;
+    bottom: 0 !important;
+    top: auto;
+    border-top:2rpx solid #3783fb;
+}
+
+.swiper-tab {
+    width:100%;
+    text-align:center;
+    line-height:80rpx;
+    padding-bottom:12rpx;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  color: #000;
+}
+
+.on {
+  border-top: 8rpx solid #A6A6A6;
+}
+
+.swiper-box {
+    display:block;
+    overflow:hidden;
+    padding:12rpx 18rpx;
+}
+
+swiper-item {
+  overflow: auto;
+}
+
+.item-view {
+    text-align:left;
+    height:100%;
+    background:#F7F7F7;
+    color:#000 !important;
+    border:2rpx solid #F2F2F2;
+    box-sizing:border-box;
+    border-radius:12rpx;
+    margin-right:6px;
+}
+
+.item-view-title{
+    color:#000;
+    font-size: 30rpx;
+}
+
+.item-view-title::after{
+    border-bottom: 0;
+}
+
+.item-view-ul > .weui-media-box{
+    margin:12rpx;
+    position:relative;
+    padding:6rpx;
+    border:2rpx solid #BEBEBE;
+    border-radius:10rpx;
+    box-shadow:1rpx 2rpx #D4D4D4;
+    background:#fff;
+}
+
+.item-view-footer::before {
+    border-top: 0;
+}
+
+.item2-view-title {
+    background:#F5F5F5;
+    margin:0;
+    border-bottom-left-radius: 6rpx;
+    border-bottom-right-radius: 6rpx;
+}
+
+.item2-view-content::before{
+    border-top: 0;
+}
+
+.item2-view-content>.weui-cell::before{
+    left:120rpx;
+}
+
+.item2-view-content image{
+    width:80rpx;
+    height:80rpx;
+}
+.addInput {
+    margin-top: 16rpx;
+}
+.addInput input{
+    margin:0 12rpx;
+    background:#fff;
+    border:2rpx solid #E4E4E4;
+    border-radius:10rpx;
+    height:72rpx;
+    line-height:72rpx;
+    text-indent:12rpx;
+    font-size:40rpx;
+}
+.btn-group {
+    text-align:right;
+    padding:12rpx;
+}
+.btn-group button:not(:last-child){
+    color:#ccc;
+}
+.btn-group button:last-child{
+    margin-left: 12rpx;
+    background:#3DA8F5;
+    color:#fff;
+}
+.mission-tilte {
+    white-space:pre-line;
+    font-size:28rpx;
+}
+.wrapCheck {
+    position:absolute;
+    top:0;
+    padding-left:12rpx;
+}
+.wrapCheck~view {
+    margin-left: 54rpx;
+}
+.weui-media-box_appmsg::before{
+    border-top: 0;
+}
+.successCheck {
+    background: #ccc !important;
+}
+.task-property {
+    padding:12rpx 0;
+}
+
+.task-property>text:first-child {
+    background:#FFAF38;
+    color:#fff;
+    padding:8rpx 0;
+    border-radius:8rpx;
+    margin-right:10rpx;
+    font-size:24rpx;
+    width:208rpx;
+    display:inline-block;
+    text-align:center;
+}
+.task-property>text:nth-child(2) {
+    background:#3DA8F5;
+    color:#fff;
+    padding:8rpx 0;
+    border-radius:8rpx;
+    font-size:24rpx;
+    width:208rpx;
+    display:inline-block;
+    text-align:center;
+    margin-right:10rpx;
+}
+
+.weui-badge {
+    background: #F3A082;
+}
+.panelCount{
+    width: 30rpx;
+    height: 30rpx;
+    transform:translateY(6rpx);
+}
+.childCountPanel {
+    display:inline-block;
+    height:44rpx;
+    line-height:44rpx;
+    font-size:24rpx;
+}

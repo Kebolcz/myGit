@@ -1,0 +1,25 @@
+{
+  "name": "react-npm-scripts",
+  "version": "1.0.0",
+  "description": "使用npm scripts构作为前端构建工具",
+  "main": "index.js",
+  "scripts": {
+    "gethelp": "echo \"[npm uglify]:压缩代码\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "uglify": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o dist/js/app.js &amp;&amp; uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
+    "imagemin": "imagemin src/images dist/images -p",
+    "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'"
+  },
+  "keywords": [
+    "npm",
+    "scripts",
+    "react",
+    "buildtools"
+  ],
+  "author": "kebo",
+  "license": "ISC",
+  "devDependencies": {
+    "imagemin-cli": "^3.0.0",
+    "uglify-js": "^3.0.15"
+  }
+}

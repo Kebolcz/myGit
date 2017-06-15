@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "项目任务",
+  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#3783fb",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,42 @@
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1010;
+    background: #fff;
+    overflow: hidden;
+}
+
+.popup_animate {
+    animation:fadeInUp 1s .2s ease both;
+    display: block;
+}
+
+
+@keyframes fadeInUp{
+    0%  {
+        opacity:0;
+        transform:translateY(2000px)
+    }
+    60% {
+        opacity:1;
+        transform:translateY(-50px)
+    }
+    80% {
+        transform:translateY(25px)
+    }
+    100%{
+        transform:translateY(0)
+    }
+}
+
+.saveBtn {
+    margin-left:32rpx;
+    margin-right:32rpx;
+    transform:scale(0.8);
+    width: 300rpx;
+}

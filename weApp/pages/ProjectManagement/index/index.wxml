@@ -1,0 +1,270 @@
+<import src="/pages/common/footer/index.wxml" />
+<view class="page height100 uf uf-ver" style="position:relative">
+  <!--我的项目开始-->
+  <view class="page__bd uf-f1 uf uf-ver" hidden="{{!dataForTabbar[0].checked}}">
+    <view class="weui-navbar" style="top:0;position:relative">
+      <block wx:for="{{tabs}}" wx:key="*this">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndexProj == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" style="padding:10rpx 0" data-type="Proj">
+          <view class="weui-navbar__title">{{item}}</view>
+        </view>
+      </block>
+      <view class="weui-navbar__slider" style="left: {{sliderLeftProj}}px; transform: translateX({{sliderOffsetProj}}px); -webkit-transform: translateX({{sliderOffsetProj}}px);"></view>
+    </view>
+    <view class="uf uf-ver uf-f1" style="position:relative;">
+      <!--按项目查看开始-->
+      <view class="weui-tab__content uf uf-ver uf-f1" hidden="{{activeIndexProj != 0}}">
+        <view class="page__bd uf uf-ver uf-f1">
+          <view class="weui-panel__hd bgwhite uf uf-he uf-ac" style="padding:15rpx 10rpx;background:#e4e4e4;">
+            <view hidden="{{isBarShowProj}}">我拥有的项目:{{projectList.length}}</view>
+            <view class="uf uf-ac" hidden="{{isBarShowProj}}">
+              <icon class="weui-icon-search" type="search" size="20" bindtap="showInput" data-type="Proj"></icon>
+            </view>
+            <view class="weui-search-bar bgwhite bdNone {{isBarShowProj?'searchBarAn':'hide'}}" style="padding:0;">
+              <view class="weui-search-bar__form bdNone">
+                <view class="weui-search-bar__box">
+                  <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                  <input type="text" class="weui-search-bar__input" placeholder="项目搜索" value="{{inputValProj}}" focus="{{isBarShowProj}}" bindinput="inputTyping" data-type="Proj" />
+                  <view class="weui-icon-clear" wx:if="{{inputValProj.length > 0}}" bindtap="clearInput" data-type="Proj">
+                    <icon type="clear" size="14"></icon>
+                  </view>
+                </view>
+              </view>
+              <view class="weui-search-bar__cancel-btn" hidden="{{!isBarShowProj}}" bindtap="hideInput" style="font-size:28rpx">取消</view>
+            </view>
+          </view>
+          <view class="weui-panel__bd  uf-f1 uf">
+            <scroll-view scroll-y="true" lower-threshold="50" class="" bindscrolltolower="" style="height:{{scrollHeight}}rpx;">
+              <navigator wx:for="{{projectListShow}}" wx:key="{{ListItem.ProjectUid}}" wx:for-index="ListIndex" wx:for-item="ListItem" url="/pages/ProjectManagement/projectStage/index?PROJ_UID={{ListItem.ProjectUid}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon60}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">{{ListItem.ProjectName}}</view>
+                  <view class="weui-media-box__desc">
+                    项 目 号: {{ListItem.ProjectCode}}</view>
+                  <view class="weui-media-box__desc">
+                    当前阶段: 安装调试</view>
+                  <view class="weui-media-box__desc">
+                    最近发布: 2017-05-05</view>
+
+                </view>
+              </navigator>
+              <view class="noMore" hidden="{{!noMore}}">
+                ——已无更多项目——
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+      <!--按项目查看结束-->
+      <!--按项目员工查看开始-->
+      <view class="weui-tab__content uf uf-ver uf-f1" hidden="{{activeIndexProj != 1}}">
+        <view class="page__bd uf uf-ver uf-f1">
+          <view class="weui-panel__hd uf uf-he uf-ac" style="padding:15rpx 10rpx;background:#e4e4e4;">
+            <view hidden="{{isBarShow}}">项目员工{{employList.length}}</view>
+            <view class="uf uf-ac" hidden="{{isBarShow}}">
+              <icon class="weui-icon-search" type="search" size="20" bindtap="showInput" data-type="Proj_1"></icon>
+            </view>
+            <view class="weui-search-bar bgwhite bdNone {{isBarShow?'searchBarAn':'hide'}}" style="padding:0;">
+              <view class="weui-search-bar__form bdNone">
+                <view class="weui-search-bar__box">
+                  <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                  <input type="text" class="weui-search-bar__input" placeholder="项目人员" value="{{inputVal}}" bindinput="inputTyping" data-type="Proj_1" />
+                  <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                  </view>
+                </view>
+              </view>
+              <view class="weui-search-bar__cancel-btn" hidden="{{!isBarShow}}" bindtap="hideInput" style="font-size:28rpx">取消</view>
+            </view>
+          </view>
+          <view class="weui-panel__bd uf uf-f1">
+            <scroll-view scroll-y="true">
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon50}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">梁晓龙</view>
+                  <view class="weui-media-box__desc">
+
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon50}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">刘崇桢</view>
+                  <view class="weui-media-box__desc">
+
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon50}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">王豫昆</view>
+                  <view class="weui-media-box__desc">
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon50}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">黄翔</view>
+                  <view class="weui-media-box__desc">
+                  </view>
+                </view>
+              </navigator>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--按项目员工查看结束-->
+  </view>
+  <!--我的项目结束-->
+  <!--我的任务开始-->
+  <view class="page__bd uf-f1 uf uf-ver" hidden="{{!dataForTabbar[1].checked}}">
+    <view class="weui-navbar" style="top:0;position:relative">
+      <block wx:for="{{tabsMission}}" wx:key="*this">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndexMiss == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" style="padding:10rpx 0" data-type="Miss">
+          <view class="weui-navbar__title">{{item}}</view>
+        </view>
+      </block>
+      <view class="weui-navbar__slider" style="left: {{sliderLeftMiss}}px; transform: translateX({{sliderOffsetMiss}}px); -webkit-transform: translateX({{sliderOffsetMiss}}px);"></view>
+    </view>
+    <view class="uf uf-ver uf-f1" style="position:relative;">
+      <view class="weui-tab__content uf uf-ver uf-f1" hidden="{{activeIndexMiss != 0}}">
+
+        <view class="page__bd uf uf-ver uf-f1">
+
+          <view class="weui-panel__hd bgwhite uf uf-he uf-ac" style="padding:15rpx 10rpx;background:#e4e4e4;">
+            <view hidden="{{isBarShowMiss}}">我拥有的任务:{{missionList.length}}</view>
+            <view class="uf uf-ac" hidden="{{isBarShowMiss}}">
+              <icon class="weui-icon-search" type="search" size="20" bindtap="showInput" data-type="Miss"></icon>
+            </view>
+            <view class="weui-search-bar bgwhite bdNone {{isBarShowMiss?'searchBarAn':'hide'}}" style="padding:0;">
+              <view class="weui-search-bar__form bdNone">
+                <view class="weui-search-bar__box">
+                  <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                  <input type="text" class="weui-search-bar__input" placeholder="任务搜索" value="{{inputVal}}" focus="{{isBarShowMiss}}" bindinput="inputTypingProj" />
+                  <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                  </view>
+                </view>
+              </view>
+              <view class="weui-search-bar__cancel-btn" hidden="{{!isBarShowMiss}}" bindtap="hideInput" style="font-size:28rpx">取消</view>
+            </view>
+          </view>
+          <view class="weui-panel__bd  uf-f1 uf">
+            <scroll-view scroll-y="true" lower-threshold="50" class="" bindscrolltolower="" style="height:{{scrollHeight}}rpx;">
+              <navigator wx:for="{{missionsListShow}}" wx:key="{{ListItem.MissionUid}}" wx:for-index="ListIndex" wx:for-item="ListItem" url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon40}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">{{ListItem.MissionName}}</view>
+                  <view class="weui-media-box__desc">
+                    {{ListItem.MissionCode}}</view>
+                  <view class="weui-media-box__desc">
+                    {{ListItem.Manager}}</view>
+
+                </view>
+              </navigator>
+              <view class="noMore" hidden="{{!noMoreMission}}">
+                ——已无更多项目——</view>
+            </scroll-view>
+          </view>
+
+        </view>
+
+      </view>
+      <view class="weui-tab__content uf uf-ver uf-f1" hidden="{{activeIndexMiss != 1}}">
+
+        <view class="page__bd uf uf-ver uf-f1">
+
+          <view class="weui-panel__hd uf uf-he uf-ac" style="padding:15rpx 10rpx;background:#e4e4e4;">
+            <view hidden="{{isBarShowMissHis}}">历史任务：{{MissionHisList.length}}</view>
+            <view class="uf uf-ac" hidden="{{isBarShowMissHis}}">
+              <icon class="weui-icon-search" type="search" size="20" bindtap="showInput"></icon>
+            </view>
+            <view class="weui-search-bar bgwhite bdNone {{isBarMissHisShow?'searchBarAn':'hide'}}" style="padding:0;">
+              <view class="weui-search-bar__form bdNone">
+                <view class="weui-search-bar__box">
+                  <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                  <input type="text" class="weui-search-bar__input" placeholder="项目人员" value="{{inputValMissionHis}}" bindinput="inputTyping" data-type="MissHis" />
+                  <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput" data-type="MissHis">
+                    <icon type="clear" size="14"></icon>
+                  </view>
+                </view>
+              </view>
+              <view class="weui-search-bar__cancel-btn" hidden="{{!isBarShowMissHis}}" bindtap="hideInput" style="font-size:28rpx" data-type="MissHis">取消</view>
+            </view>
+          </view>
+          <view class="weui-panel__bd uf uf-f1">
+            <scroll-view scroll-y="true">
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon40}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">任务1</view>
+                  <view class="weui-media-box__desc">
+                    A1.0000001
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon40}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">任务2</view>
+                  <view class="weui-media-box__desc">
+                    A1.0000002
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon40}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">任务3</view>
+                  <view class="weui-media-box__desc">
+                    A1.0000003
+                  </view>
+                </view>
+              </navigator>
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{icon.icon40}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">任务4</view>
+                  <view class="weui-media-box__desc">
+                    A1.0000004
+                  </view>
+                </view>
+              </navigator>
+
+            </scroll-view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+  <view class="footer">
+    <template is="tab-bar" data="{{ dataForTabbar }}" />
+  </view>
+</view>
