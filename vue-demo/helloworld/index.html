@@ -12,6 +12,11 @@
         <p>{{ message }}</p>
         <input type="text" v-model="message" />
     </div>
+    <div id="app-2">
+        <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+    </div>
 </body>
 <script src="./vue.min.js"></script>
 <script>
@@ -25,6 +30,13 @@
     new Vue({
         el: '#app',
         data: exampleData
+    })
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: '页面加载于 ' + new Date()
+        }
     })
 </script>
 
