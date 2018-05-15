@@ -3,7 +3,7 @@
  * data:20170117
  * description:crawler
  * 异步访问url数组(page=1..3..4..99),筛选出该page下评论数大于stars的帖子,爬取并持久化该页面的<img>.
- * 爬取zol图片-美女
+ * 爬取zol图片
  */
 
 var Crawler = require("crawler");

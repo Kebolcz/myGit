@@ -189,6 +189,12 @@ npm install --save-dev babel-preset-stage-3
 4. 组件  
 5. this.props.children  
 6. PropTypes  
+> props 是一种从父级传递数据到子级的方式。如果你对 state 的观念很熟悉，绝不要用state 来构建这个静态版本。State 仅仅是为互动性，也就是随时间变化的数据所预留的。  
+在React里有两种数据 "模型": props 和 state。
+让我们逐个检查出哪一个是state，只需要简单地问以下三个问题:  
+它是通过props从父级传递来的吗？如果是，它可能不是 state。  
+它随时间变化吗？如果不是,它可能不是 state。  
+你能基于其他任何组件里的 state 或者 props 计算出它吗？如果是,它可能不是state.
 7. this.state (组件=>状态机)  
 8. 组件的生命周期 [组件的生命周期](https://npm.taobao.org/package/rimraf) [生命周期]  
 

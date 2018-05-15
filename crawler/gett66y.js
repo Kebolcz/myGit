@@ -3,7 +3,6 @@
  * data:20170115
  * description:使用async.mapLimit()限制并发访问数量.
  * 异步访问url数组(page=1..3..4..99),筛选出该page下评论数大于stars的帖子,爬取并持久化该页面的<img>.
- * 爬取草榴图片-美女
  */
 
 //

@@ -2,7 +2,7 @@
  * author:kebo
  * data:20170115
  * description:使用async.mapLimit()限制并发访问数量.
- * 爬取百度图片-美女
+ * 爬取百度图片
  */
 var superagent = require('superagent');
 var superagentCharset = require('superagent-charset');
