@@ -6,13 +6,15 @@ import axios from 'axios';
  * withRouter will re-render its component every time the route changes with the same props as <Route> render props: { match, location, history }. 
  */
 import { withRouter } from 'react-router';
+import { loadData } from '../../redux/user.redux';
+import { connect } from 'react-redux';
 
 
 class AuthRoute extends Component{
     componentDidMount(){
         const publicList = ['/login','/register'];
         const pathname = this.props.location.pathname;
-        if(publicList.indexOf(pathname) > -1){
+        if(~publicList.indexOf(pathname)){
             return null;
         }
         //get user info
@@ -20,6 +22,7 @@ class AuthRoute extends Component{
             if(res.status === 200){
                 if(res.data.code === 0){
                     //有登陆信息，跳转到对应页面
+                    this.props.loadData(res.data.data);
                 }else{
                     this.props.history.push('/login');
                 }
@@ -27,7 +30,6 @@ class AuthRoute extends Component{
         });
         /* 是否登陆
          * 现在的url
-         * 
         */
     }
 
@@ -37,5 +39,9 @@ class AuthRoute extends Component{
 }
 
 AuthRoute = withRouter(AuthRoute);
+
+const mapStateToProps = null;
+const actionCreator = { loadData };
+AuthRoute = connect(mapStateToProps, actionCreator)(AuthRoute);
 
 export default AuthRoute;

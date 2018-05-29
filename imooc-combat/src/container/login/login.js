@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../redux/user.redux';
 
+/**
+ * React组件主要负责两个功能:
+ * 1. 与Store进行交互，读取store的数据以及发送action
+ * 2. 根据props和state渲染界面
+ */
+
 class Login extends React.Component {
+	debugger;
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -60,7 +67,11 @@ const mapStateToProps = state => {
 };
   
 const actionCreator = { login };
-  
+
+/**
+ * 函数mapStateToProps代替了容器组件中传递state的功能
+ * 函数mapDispatchToProps(actionCreator)代替了容器组件中传递dispatch的功能
+ */
 Login = connect(mapStateToProps, actionCreator)(Login);
 
 export default Login;

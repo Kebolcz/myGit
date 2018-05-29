@@ -21,9 +21,8 @@ class Register extends React.Component {
 		});
 	}
 	handleRegister(){
-		debugger;
 		this.props.register(this.state);
-		console.log(this.state);
+		// console.log(this.state);
 	}
 	render() {
 		const RadioItem = Radio.RadioItem;
