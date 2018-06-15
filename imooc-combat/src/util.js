@@ -4,7 +4,7 @@ export function getRedirectPath({type, avator}){
      * @param:user.avator
      * 根据用户信息 返回跳转地址
      */
-    let url = (type === 'boss') ? '/boss' : '/genius';
+    let url = (type === 'boss') ? '/bossinfo' : '/genius';
     if(avator) {
         url += 'info';
     }

@@ -20,6 +20,7 @@ import reducers from './reducer';
 import './config';
 import registerServiceWorker from './registerServiceWorker';
 
+import BossInfo from './container/bossinfo/bossinfo';
 import './index.css';
 
 /**
@@ -35,10 +36,6 @@ const store = createStore(
 	compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : (f) => f)
 );
 
-function Boss(){
-	return <h2>boss</h2>
-}
-
 function Genius(){
 	return <h2>Genius</h2>
 }
@@ -51,7 +48,7 @@ ReactDOM.render(
 				<AuthRoute />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
-				<Route path="/boss" component={Boss} />
+				<Route path="/bossinfo" component={BossInfo} />
 				<Route path="/genius" component={Genius} />
 			</div>
 			{/* </Switch> */}
